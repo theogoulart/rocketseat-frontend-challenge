@@ -1,5 +1,13 @@
 import Head from 'next/head'
 import Product from '../components/ProductCard'
+import styled from 'styled-components'
+
+const Grid = styled.main`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 32px;
+  row-gap: 24px;
+`
 
 export default function Home() {
   const data = [
@@ -60,9 +68,9 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <Grid>
         {data.map((item, i) => (<Product key={i} product={item} />))}
-      </main>
+      </Grid>
       <footer>
       </footer>
     </div>
