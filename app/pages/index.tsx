@@ -6,7 +6,16 @@ const Grid = styled.main`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 32px;
+  max-width: 1120px;
   row-gap: 24px;
+`
+
+const Container = styled.main`
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+  margin-bottom: 72px;
+  width: 100%;
 `
 
 export default function Home() {
@@ -68,9 +77,11 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Grid>
-        {data.map((item, i) => (<Product key={i} product={item} />))}
-      </Grid>
+      <Container>
+        <Grid>
+          {data.map((item, i) => (<Product key={i} product={item} />))}
+        </Grid>
+      </Container>
       <footer>
       </footer>
     </div>
