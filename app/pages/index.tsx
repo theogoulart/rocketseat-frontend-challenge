@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Product from '../components/ProductCard'
+import Pagination from '../components/Pagination'
 import styled from 'styled-components'
 
 const Grid = styled.main`
@@ -77,11 +78,13 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Pagination/>
       <Container>
         <Grid>
           {data.map((item, i) => (<Product key={i} product={item} />))}
         </Grid>
       </Container>
+      <Pagination/>
       <footer>
       </footer>
     </div>
