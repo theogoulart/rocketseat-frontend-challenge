@@ -3,20 +3,25 @@ import Product from '../components/ProductCard'
 import Pagination from '../components/Pagination'
 import styled from 'styled-components'
 
-const Grid = styled.main`
+const Main = styled.main`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`
+const Container = styled.section`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1120px;
+`
+const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 32px;
-  max-width: 1120px;
   row-gap: 24px;
-`
-
-const Container = styled.main`
-  display: flex;
-  justify-content: center;
   margin-top: 36px;
   margin-bottom: 72px;
-  width: 100%;
 `
 
 export default function Home() {
@@ -78,13 +83,15 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Pagination/>
-      <Container>
-        <Grid>
-          {data.map((item, i) => (<Product key={i} product={item} />))}
-        </Grid>
-      </Container>
-      <Pagination/>
+      <Main>
+        <Container>
+          <Pagination/>
+          <Grid>
+            {data.map((item, i) => (<Product key={i} product={item} />))}
+          </Grid>
+          <Pagination/>
+        </Container>
+      </Main>
       <footer>
       </footer>
     </div>
