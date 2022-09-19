@@ -1,9 +1,14 @@
+@font-face {
+  font-family: Saira;
+  src: url('../fonts/Saira/Saira-Regular.ttf');
+}
+
 html,
 body {
   background: #DEDEDE;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: Saira, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -14,6 +19,7 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: Saira;
 }
 
 /* @media (prefers-color-scheme: dark) {
