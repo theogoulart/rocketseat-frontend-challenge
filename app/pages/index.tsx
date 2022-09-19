@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Product from '../components/ProductCard'
 import Pagination from '../components/Pagination'
+import Nav from '../components/Nav'
 import styled from 'styled-components'
 
 const Main = styled.main`
@@ -85,6 +86,7 @@ export default function Home() {
       </Head>
       <Main>
         <Container>
+          <Nav/>
           <Pagination/>
           <Grid>
             {data.map((item, i) => (<Product key={i} product={item} />))}
