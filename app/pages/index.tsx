@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Product from '../components/ProductCard'
 import Pagination from '../components/Pagination'
 import Nav from '../components/Nav'
+import Select from '../components/Select'
 import styled from 'styled-components'
 
 const Main = styled.main`
@@ -23,6 +24,12 @@ const Grid = styled.div`
   row-gap: 24px;
   margin-top: 36px;
   margin-bottom: 72px;
+`
+const FlexBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  width: 100%;
 `
 
 export default function Home() {
@@ -86,7 +93,10 @@ export default function Home() {
       </Head>
       <Main>
         <Container>
-          <Nav/>
+          <FlexBar>
+            <Nav/>
+            <Select/>
+          </FlexBar>
           <Pagination/>
           <Grid>
             {data.map((item, i) => (<Product key={i} product={item} />))}
