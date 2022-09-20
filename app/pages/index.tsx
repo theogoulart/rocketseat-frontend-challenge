@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Product from '../components/ProductCard'
 import Pagination from '../components/Pagination'
+import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Select from '../components/Select'
 import styled from 'styled-components'
@@ -91,6 +92,7 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header/>
       <Main>
         <Container>
           <FlexBar>
