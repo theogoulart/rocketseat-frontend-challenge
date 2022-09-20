@@ -12,8 +12,7 @@ const Link = styled.button`
   color: #737380;
   font-size: 16px;
   margin-right: 40px;
-  padding: 0;
-  padding-bottom: 4px;
+  padding: 4px 0;
   ${props => props.active && css`
     border-bottom: 4px solid #FFA585;
     color: #41414D;

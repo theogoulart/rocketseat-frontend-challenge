@@ -1,13 +1,21 @@
+import Image from 'next/image'
 import styled, { css } from 'styled-components'
 import { useState } from 'react'
 
 const Label = styled.button`
+  align-items: center;
+  display: flex;
   background: transparent;
   border: none;
   color: #737380;
   cursor: pointer;
   font-size: 14px;
   padding: 8px;
+`
+const Icon = styled.span`
+  align-items: center;
+  display: inline-flex;
+  margin-left: 16px;
 `
 const Container = styled.div`
   position: relative;
@@ -46,7 +54,7 @@ export default function Select() {
 
   return (
     <Container>
-      <Label onClick={handleClick}>Organizar por &#8964;</Label>
+      <Label onClick={handleClick}>Organizar por <Icon><Image src='/angle-down.svg' width={12} height={6}/></Icon></Label>
       <Options isOpen={isOpen}>
         <Option>Novidades</Option>
         <Option>Preço: Maior - Menor</Option>
