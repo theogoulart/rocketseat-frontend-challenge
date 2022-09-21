@@ -4,8 +4,9 @@ import Header from '../../components/Header'
 import styled from 'styled-components'
 
 const Main = styled.main`
+  align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   padding-bottom: 80px;
   width: 100%;
 `
@@ -18,6 +19,24 @@ const Container = styled.section`
   max-width: 1120px;
   width: 100%;
 `
+const BackButton = styled.div`
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: #617480;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  margin-bottom: 25px;
+  margin-top: 28px;
+`
+const ReturnIcon = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+`
 const Details = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,7 +45,7 @@ const Details = styled.div`
 const Name = styled.h1`
   font-size: 32px;
   font-weight: 300;
-  margin: 8px 0 4px 0;
+  margin: 12px 0 4px 0;
 `
 const Price = styled.div`
   font-size: 20px;
@@ -80,6 +99,18 @@ export default function Home() {
       </Head>
       <Header/>
       <Main>
+        <Container>
+          <BackButton>
+            <ReturnIcon>
+              <Image
+                src='/return.svg'
+                width={18}
+                height={18}
+              />
+            </ReturnIcon>
+            Voltar
+          </BackButton>
+        </Container>
         <Container>
           <ImageWrapper>
             <Image
