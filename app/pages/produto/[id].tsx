@@ -11,8 +11,11 @@ const Main = styled.main`
   width: 100%;
 `
 const ImageWrapper = styled.div`
+  border-radius: 4px;
   flex-shrink: 0;
+  max-height: 580px;
   margin-right: 32px;
+  overflow: hidden;
 `
 const Container = styled.section`
   display: flex;
