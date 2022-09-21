@@ -7,7 +7,6 @@ const Container = styled.header`
   flex-direction: row;
   justify-content: center;
   height: 80px;
-  margin-bottom: 34px;
   width: 100%;
 `
 const Inner = styled.div`

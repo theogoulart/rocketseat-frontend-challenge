@@ -9,6 +9,7 @@ import styled from 'styled-components'
 const Main = styled.main`
   display: flex;
   justify-content: center;
+  margin-top: 34px;
   padding-bottom: 80px;
   width: 100%;
 `
