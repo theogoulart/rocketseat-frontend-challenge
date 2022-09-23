@@ -1,7 +1,9 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 
+import Link from 'next/link'
 import Image from 'next/image'
+
 import Head from 'next/head'
 import Header from '../../components/Header'
 import styled from 'styled-components'
@@ -25,7 +27,7 @@ const Container = styled.section`
   max-width: 1120px;
   width: 100%;
 `
-const BackButton = styled.div`
+const BackButton = styled.a`
   align-items: center;
   background: transparent;
   border: none;
@@ -97,16 +99,18 @@ export default function Product({ product }) {
       <Header/>
       <Main>
         <Container>
-          <BackButton>
-            <ReturnIcon>
-              <Image
-                src='/return.svg'
-                width={18}
-                height={18}
-              />
-            </ReturnIcon>
-            Voltar
-          </BackButton>
+          <Link href="/">
+            <BackButton>
+              <ReturnIcon>
+                <Image
+                  src='/return.svg'
+                  width={18}
+                  height={18}
+                />
+              </ReturnIcon>
+              Voltar
+            </BackButton>
+          </Link>
         </Container>
         <Container>
           <ImageWrapper>
