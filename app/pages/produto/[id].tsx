@@ -90,7 +90,7 @@ export default function Product({ product }) {
   return (
     <div>
       <Head>
-        <title>Caputeeno Store</title>
+        <title>{product.name} - Caputeeno</title>
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -140,11 +140,11 @@ export default function Product({ product }) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
   const  { data, error } = await client.query({
     query: gql`
       query Product {
-        Product(id: "b5a346b7-995b-42b5-8072-d3dda86fb5ed") {
+        Product(id: "${params.id}") {
           name
           description
           image_url
