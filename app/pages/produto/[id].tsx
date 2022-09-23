@@ -1,3 +1,6 @@
+import { gql } from "@apollo/client";
+import client from "../../apollo-client";
+
 import Image from 'next/image'
 import Head from 'next/head'
 import Header from '../../components/Header'
@@ -83,16 +86,7 @@ const ButtonIcon = styled.span`
   margin-right: 16px;
 `
 
-export default function Home() {
-  const product = {
-    "name": "Caneca de cerâmica rústica",
-    "description": "Aut nihil corporis nulla temporibus ut id sed qui eos. Rerum et molestiae sequi tempora facere natus ratione totam. Autem dolorum eaque facilis et atque voluptatem itaque. Enim quia vel voluptas. Iure similique dolores. Dolor quis et explicabo recusandae.",
-    "image_url": "https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg",
-    "category": "mugs",
-    "price_in_cents": 3925,
-    "sales": 12
-  };
-
+export default function Product({ product }) {
   return (
     <div>
       <Head>
@@ -144,4 +138,27 @@ export default function Home() {
       </Main>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const  { data, error } = await client.query({
+    query: gql`
+      query Product {
+        Product(id: "b5a346b7-995b-42b5-8072-d3dda86fb5ed") {
+          name
+          description
+          image_url
+          category
+          price_in_cents
+          sales
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      product: data.Product,
+    },
+  };
 }
