@@ -22,7 +22,7 @@ const Details = styled.div`
   padding: 16px 16px 24px 32px;
   position: relative;
 `
-const ProductName = styled.div`
+const Name = styled.div`
   font-size: 20px;
   font-weight: 300;
   line-height: 30px;
@@ -49,7 +49,7 @@ const RemoveButton = styled.button`
   top: 16px;
   right: 16px;
 `
-const Quantity = styled.select`
+const QuantitySelect = styled.select`
   background: #F3F5F6;
   background-image: url('/angle-down.svg');
   background-size: 10px;
@@ -83,12 +83,12 @@ export default function CartProduct({ description, image_url, name, price_in_cen
       />
       </ImageWrapper>
       <Details>
-      <ProductName>{name}</ProductName>
+      <Name>{name}</Name>
       <Description>{description}</Description>
       <Price>{`R$ ${price_in_cents/100}`.replace('.',',')}</Price>
-      <Quantity>
+      <QuantitySelect>
           <option selected>1</option>
-      </Quantity>
+      </QuantitySelect>
       <RemoveButton>
           <Image
           src='/trash-bin.svg'
