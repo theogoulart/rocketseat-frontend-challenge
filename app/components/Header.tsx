@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
 
@@ -16,8 +17,9 @@ const Inner = styled.div`
   max-width: 1120px;
   width: 100%;
 `
-const Logo = styled.div`
+const Logo = styled.a`
   color: #5D5D6D;
+  cursor: pointer;
   flex: 1;
   font-family: Saira Stencil One;
   font-size: 40px;
@@ -46,10 +48,8 @@ const Submit = styled.button`
   height: 42px;
   width: 42px;
 `
-const ShoppingCart = styled.button`
+const ShoppingCart = styled.a`
   align-items: center;
-  background: transparent;
-  border: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -77,7 +77,11 @@ export default function Header() {
   return (
     <Container>
       <Inner>
-        <Logo>capputeeno</Logo>
+        <Link href="/">
+          <Logo>
+            capputeeno
+          </Logo>
+        </Link>
         <SearchWrapper>
           <Search placeholder='Procurando por algo específico?' />
           <Submit>
@@ -88,16 +92,18 @@ export default function Header() {
             />
           </Submit>
         </SearchWrapper>
-        <ShoppingCart>
-          <Image
-            src='/shopping-bag.svg'
-            width={24}
-            height={24}
-          />
-          <Notifications>
-            2
-          </Notifications>
-        </ShoppingCart>
+        <Link href="/carrinho">
+          <ShoppingCart>
+            <Image
+              src='/shopping-bag.svg'
+              width={24}
+              height={24}
+            />
+            <Notifications>
+              2
+            </Notifications>
+          </ShoppingCart>
+        </Link>
       </Inner>
     </Container>
   )
