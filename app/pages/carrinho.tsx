@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Product from '../components/CartProduct'
+import Checkout from '../components/Checkout'
 
 const Main = styled.main`
   align-items: center;
@@ -48,7 +49,7 @@ const Title = styled.h1`
   margin: 0;
   margin-bottom: 6px;
 `
-const Summary = styled.p`
+const Total = styled.p`
   font-size: 16px;
   margin: 0;
   margin-bottom: 24px;
@@ -95,9 +96,10 @@ export default function ShoppingCart() {
               Voltar
             </BackButton>
             <Title>SEU CARRINHO</Title>
-            <Summary>Total (3 produtos) <strong>R$161,00</strong></Summary>
+            <Total>Total (3 produtos) <strong>R$161,00</strong></Total>
             {products.map(p => <Product {...p} />)}
           </Cart>
+          <Checkout shippingPriceInCents={4000} subtotalInCents={products.reduce((acc, p) => acc + p.price_in_cents, 0)}/>
         </Container>
       </Main>
     </div>
