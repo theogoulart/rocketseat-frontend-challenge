@@ -1,10 +1,13 @@
+import Link from 'next/link'
+
 import Image from 'next/image';
 import PropTypes, { InferProps } from "prop-types";
 import styled from 'styled-components'
 
-const Container = styled.div`
+const Container = styled.a`
   background: #fff;
   border-radius: 4px;
+  cursor: pointer;
   display: flex;
   overflow: hidden;
   flex-direction: column;
@@ -25,15 +28,17 @@ const Price = styled.div`
 
 export default function ProductCard({ product: { id, image_url, name, price_in_cents } }) {
   return (
-    <Container>
-      <Image
-        src={image_url}
-        width={256}
-        height={300}
-      />
-      <Name>{name}</Name>
-      <Price>R$ {price_in_cents/100}</Price>
-    </Container>
+    <Link href={`/produto/${id}`}>
+      <Container>
+        <Image
+          src={image_url}
+          width={256}
+          height={300}
+        />
+        <Name>{name}</Name>
+        <Price>R$ {price_in_cents/100}</Price>
+      </Container>
+    </Link>
   )
 }
 

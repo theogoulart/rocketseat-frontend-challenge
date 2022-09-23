@@ -1,8 +1,9 @@
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
+import Link from 'next/link'
 
 import Head from 'next/head'
-import Product from '../components/ProductCard'
+import Product from '../components/ProductLink'
 import Pagination from '../components/Pagination'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
