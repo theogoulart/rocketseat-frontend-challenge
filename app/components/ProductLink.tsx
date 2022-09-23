@@ -12,14 +12,12 @@ const Container = styled.a`
   overflow: hidden;
   flex-direction: column;
 `
-
 const Name = styled.div`
   border-bottom: 1px solid #DCE2E6;
   font-size: 16px;
   margin: 0 8px;
   padding: 8px 0;
 `
-
 const Price = styled.div`
   font-size: 14px;
   font-weight: bold;
