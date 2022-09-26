@@ -24,6 +24,7 @@ const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   max-width: 1120px;
+  width: 100%;
 `
 const Grid = styled.div`
   display: grid;
