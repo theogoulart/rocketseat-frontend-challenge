@@ -29,13 +29,15 @@ const Page = styled.button`
   `}
 `
 
-export default function Pagination({ page, setPage }) {
+export default function Pagination({ pages, page, setPage }) {
+  const pageJSX = [];
+  for (let i=1;i<=pages;i++) {
+    pageJSX.push(<Page key={i} onClick={() => setPage(i)} active={page === i}>{i}</Page>);
+  }
+
   return (
     <Container>
-      <Page onClick={() => setPage(1)} active={page === 1}>1</Page>
-      <Page onClick={() => setPage(2)} active={page === 2}>2</Page>
-      <Page onClick={() => setPage(3)} active={page === 3}>3</Page>
-      <Page onClick={() => setPage(4)} active={page === 4}>4</Page>
+      {pageJSX}
       <Page>&lt;</Page>
       <Page last>&gt;</Page>
     </Container>
@@ -43,6 +45,7 @@ export default function Pagination({ page, setPage }) {
 }
 
 Pagination.propTypes = {
+  pages: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired
 };

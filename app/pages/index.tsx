@@ -40,8 +40,15 @@ const FlexBar = styled.div`
   width: 100%;
 `
 
+const FETCH_PRODUCT_META = gql`
+query ProductMeta($filter: ProductFilter!) {
+  _allProductsMeta(filter: $filter) {
+    count
+  }
+}
+`;
 const FETCH_PRODUCTS = gql`
-query products($perPage: Int!, $page: Int!, $filter: ProductFilter!, $sortField: String!, $sortOrder: String!) {
+query Products($perPage: Int!, $page: Int!, $filter: ProductFilter!, $sortField: String!, $sortOrder: String!) {
   allProducts(perPage: $perPage, page: $page, , filter: $filter, sortField: $sortField, sortOrder: $sortOrder) {
     id
     image_url
@@ -58,7 +65,13 @@ export default function Home() {
   const [sortField, setSortField] = useState('');
   const [sortOrder, setSortOrder] = useState('');
 
-  const { data, loading, error } = useQuery(
+  const { data: _allProductsMetaData, loading: loadingMeta } = useQuery(FETCH_PRODUCT_META, {
+    client: client,
+    variables: {
+      filter: filter,
+    }
+  });
+  const { data: allProductsData, loading, error } = useQuery(
     FETCH_PRODUCTS,
     {
       client: client,
@@ -72,11 +85,12 @@ export default function Home() {
     }
   );
 
-  if (loading) {
+  if (loading || loadingMeta) {
     return "loading...";
   }
 
-  const products = data.allProducts;
+  const products = allProductsData.allProducts;
+  const count = _allProductsMetaData._allProductsMeta.count;
 
   return (
     <div>
@@ -92,11 +106,11 @@ export default function Home() {
             <Nav setFilter={setFilter} filter={filter} />
             <Select/>
           </FlexBar>
-          <Pagination page={page} setPage={setPage}/>
+          <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>
           <Grid>
             {products.map((item, i) => (<Product key={i} {...item} />))}
           </Grid>
-          <Pagination/>
+          <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>
         </Container>
       </Main>
       <footer>
