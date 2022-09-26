@@ -53,7 +53,7 @@ const QuantitySelect = styled.select`
   background: #F3F5F6;
   background-image: url('/angle-down.svg');
   background-size: 10px;
-  background-position: 42px 16px;
+  background-position: 42px 21px;
   background-repeat: no-repeat;
   border: 1px solid #A8A8B3;
   border-radius: 8px;
@@ -67,9 +67,6 @@ const QuantitySelect = styled.select`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  &:after {
-    content: 'oi';
-  }
 `
 
 export default function CartProduct({ description, image_url, name, price_in_cents }) {
