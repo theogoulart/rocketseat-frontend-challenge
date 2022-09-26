@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import PropTypes, { InferProps } from "prop-types";
 import styled from 'styled-components'
-
+import { formatPrice } from '../utils/tools'
 
 const Container = styled.div`
   background: #fff;
@@ -82,7 +82,7 @@ export default function CartProduct({ description, image_url, name, price_in_cen
       <Details>
       <Name>{name}</Name>
       <Description>{description}</Description>
-      <Price>{`R$ ${price_in_cents/100}`.replace('.',',')}</Price>
+      <Price>R$ {formatPrice(price_in_cents)}</Price>
       <QuantitySelect>
           <option selected>1</option>
       </QuantitySelect>

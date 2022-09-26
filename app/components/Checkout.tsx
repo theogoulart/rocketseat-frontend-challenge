@@ -1,5 +1,6 @@
-import PropTypes, { InferProps } from "prop-types";
+import PropTypes, { InferProps } from "prop-types"
 import styled from 'styled-components'
+import { formatPrice } from '../utils/tools'
 
 const Container = styled.section`
   background: #fff;
@@ -56,10 +57,6 @@ const CheckoutButton = styled.button`
   margin-top: 40px;
   width: 303px;
 `
-
-const formatPrice = (priceInCents) => {
-  return `${(priceInCents/100).toFixed(2)}`.replace('.', ',');
-}
 
 export default function Checkout({subtotalInCents, shippingPriceInCents}) {
   const totalInCents = subtotalInCents + shippingPriceInCents;

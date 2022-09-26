@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Header from '../../components/Header'
 import styled from 'styled-components'
+import { formatPrice } from '../../utils/tools'
 
 const Main = styled.main`
   align-items: center;
@@ -123,7 +124,7 @@ export default function Product({ product }) {
           <Details>
             <span>{product.category}</span>
             <Name>{product.name}</Name>
-            <Price>{`R$ ${product.price_in_cents/100}`.replace('.',',')}</Price>
+            <Price>R$ {formatPrice(product.price_in_cents)}</Price>
             <Disclaimer>*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</Disclaimer>
             <span>DESCRIÇÃO</span>
             <Description>{product.description}</Description>

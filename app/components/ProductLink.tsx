@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image';
 import PropTypes, { InferProps } from "prop-types";
 import styled from 'styled-components'
+import { formatPrice } from '../utils/tools'
 
 const Container = styled.a`
   background: #fff;
@@ -34,7 +35,7 @@ export default function ProductCard({ id, image_url, name, price_in_cents }) {
           height={300}
         />
         <Name>{name}</Name>
-        <Price>R$ {price_in_cents/100}</Price>
+        <Price>R$ {formatPrice(price_in_cents)}</Price>
       </Container>
     </Link>
   )
