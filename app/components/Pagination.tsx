@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import styled, { css } from 'styled-components'
 
 const Container = styled.div`
@@ -5,7 +6,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
 `
-
 const Page = styled.button`
   align-items: center;
   background: #E9E9F0;
@@ -29,16 +29,20 @@ const Page = styled.button`
   `}
 `
 
-export default function Pagination() {
+export default function Pagination({ page, setPage }) {
   return (
     <Container>
-      <Page active>1</Page>
-      <Page>2</Page>
-      <Page>3</Page>
-      <Page>4</Page>
-      <Page>5</Page>
+      <Page onClick={() => setPage(1)} active={page === 1}>1</Page>
+      <Page onClick={() => setPage(2)} active={page === 2}>2</Page>
+      <Page onClick={() => setPage(3)} active={page === 3}>3</Page>
+      <Page onClick={() => setPage(4)} active={page === 4}>4</Page>
       <Page>&lt;</Page>
       <Page last>&gt;</Page>
     </Container>
   )
 }
+
+Pagination.propTypes = {
+  page: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired
+};

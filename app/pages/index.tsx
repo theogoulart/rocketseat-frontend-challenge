@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import client from "../apollo-client";
 import Link from 'next/link'
 
@@ -40,7 +40,44 @@ const FlexBar = styled.div`
   width: 100%;
 `
 
-export default function Home({products}) {
+const FETCH_PRODUCTS = gql`
+query products($perPage: Int!, $page: Int!, $filter: ProductFilter!, $sortField: String!, $sortOrder: String!) {
+  allProducts(perPage: $perPage, page: $page, , filter: $filter, sortField: $sortField, sortOrder: $sortOrder) {
+    id
+    image_url
+    name
+    price_in_cents
+  }
+}
+`;
+const PER_PAGE = 12;
+
+export default function Home() {
+  const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState({});
+  const [sortField, setSortField] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
+
+  const { data, loading, error } = useQuery(
+    FETCH_PRODUCTS,
+    {
+      client: client,
+      variables: {
+        perPage: PER_PAGE,
+        page: page,
+        filter: filter,
+        sortField: sortField,
+        sortOrder: sortOrder,
+      }
+    }
+  );
+
+  if (loading) {
+    return "loading...";
+  }
+
+  const products = data.allProducts;
+
   return (
     <div>
       <Head>
@@ -52,10 +89,10 @@ export default function Home({products}) {
       <Main>
         <Container>
           <FlexBar>
-            <Nav/>
+            <Nav setFilter={setFilter} filter={filter} />
             <Select/>
           </FlexBar>
-          <Pagination/>
+          <Pagination page={page} setPage={setPage}/>
           <Grid>
             {products.map((item, i) => (<Product key={i} {...item} />))}
           </Grid>
@@ -66,25 +103,4 @@ export default function Home({products}) {
       </footer>
     </div>
   )
-}
-
-export async function getServerSideProps() {
-  const  { data, error } = await client.query({
-    query: gql`
-      query products {
-        allProducts(perPage: 12, page: 1) {
-          id
-          image_url
-          name
-          price_in_cents
-        }
-      }
-    `,
-  });
-
-  return {
-    props: {
-      products: data.allProducts,
-    },
-  };
 }

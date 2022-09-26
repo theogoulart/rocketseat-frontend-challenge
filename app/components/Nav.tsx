@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import styled, { css } from 'styled-components'
 
 const Container = styled.div`
@@ -22,12 +23,17 @@ const Link = styled.button`
   `}
 `
 
-export default function Nav() {
+export default function Nav({ setFilter, filter }) {
   return (
     <Container>
-      <Link active>TODOS OS PRODUTOS</Link>
-      <Link>CAMISETAS</Link>
-      <Link>CANECAS</Link>
+      <Link onClick={() => setFilter({})} active={Object.keys(filter).length === 0 }>TODOS OS PRODUTOS</Link>
+      <Link onClick={() => setFilter({category: "t-shirts"})} active={filter.category === "t-shirts"}>CAMISETAS</Link>
+      <Link onClick={() => setFilter({category: "mugs"})} active={filter.category === "mugs"}>CANECAS</Link>
     </Container>
   )
 }
+
+Nav.propTypes = {
+  filter: PropTypes.object.isRequired,
+  setFilter: PropTypes.func.isRequired
+};
