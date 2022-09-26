@@ -24,7 +24,7 @@ const Price = styled.div`
   padding: 8px;
 `
 
-export default function ProductCard({ product: { id, image_url, name, price_in_cents } }) {
+export default function ProductCard({ id, image_url, name, price_in_cents }) {
   return (
     <Link href={`/produto/${id}`}>
       <Container>
@@ -41,10 +41,8 @@ export default function ProductCard({ product: { id, image_url, name, price_in_c
 }
 
 ProductCard.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image_url: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price_in_cents: PropTypes.number.isRequired
-  }).isRequired
+  id: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price_in_cents: PropTypes.number.isRequired
 };

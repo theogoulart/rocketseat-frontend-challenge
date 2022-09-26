@@ -56,7 +56,7 @@ export default function Home({products}) {
           </FlexBar>
           <Pagination/>
           <Grid>
-            {products.map((item, i) => (<Product key={i} product={item} />))}
+            {products.map((item, i) => (<Product key={i} {...item} />))}
           </Grid>
           <Pagination/>
         </Container>
