@@ -9,11 +9,12 @@ import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Select from '../components/Select'
 import styled from 'styled-components'
+import { useState } from "react";
 
 const Main = styled.main`
   display: flex;
   justify-content: center;
-  margin-top: 34px;
+  margin-top: 30px;
   padding-bottom: 80px;
   width: 100%;
 `

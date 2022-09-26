@@ -8,6 +8,8 @@ const Container = styled.div`
 const Link = styled.button`
   background: none;
   border: none;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
   cursor: pointer;
   color: #737380;
   font-size: 16px;
