@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
 import { useState } from 'react'
@@ -46,7 +48,7 @@ const Option = styled.div`
   }
 `
 
-export default function Select() {
+export default function Select({ sortField, sortOrder, setSortField, setSortOrder }) {
   const [ isOpen, setIsOpen ] = useState(false);
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -56,11 +58,18 @@ export default function Select() {
     <Container>
       <Label onClick={handleClick}>Organizar por <Icon><Image src='/angle-down.svg' width={12} height={6}/></Icon></Label>
       <Options isOpen={isOpen}>
-        <Option>Novidades</Option>
-        <Option>Preço: Maior - Menor</Option>
-        <Option>Preço: Menor - Maior</Option>
-        <Option>Mais vendidos</Option>
+        <Option onClick={() => { setSortField('created_at'); setSortOrder('asc'); setIsOpen(false) }}>Novidades</Option>
+        <Option onClick={() => { setSortField('price_in_cents'); setSortOrder('desc'); setIsOpen(false) }}>Preço: Maior - Menor</Option>
+        <Option onClick={() => { setSortField('price_in_cents'); setSortOrder('asc'); setIsOpen(false) }}>Preço: Menor - Maior</Option>
+        <Option onClick={() => { setSortField('sales'); setSortOrder('asc'); setIsOpen(false) }}>Mais vendidos</Option>
       </Options>
     </Container>
   )
 }
+
+Select.propTypes = {
+  sortField: PropTypes.string.isRequired,
+  setSortField: PropTypes.func.isRequired,
+  sortOrder: PropTypes.string.isRequired,
+  setSortOrder: PropTypes.func.isRequired,
+};

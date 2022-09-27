@@ -35,5 +35,5 @@ export default function Nav({ setFilter, filter }) {
 
 Nav.propTypes = {
   filter: PropTypes.object.isRequired,
-  setFilter: PropTypes.func.isRequired
+  setFilter: PropTypes.func.isRequired,
 };

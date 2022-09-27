@@ -86,12 +86,8 @@ export default function Home() {
     }
   );
 
-  if (loading || loadingMeta) {
-    return "loading...";
-  }
-
-  const products = allProductsData.allProducts;
-  const count = _allProductsMetaData._allProductsMeta.count;
+  const products = allProductsData?.allProducts;
+  const count = _allProductsMetaData?._allProductsMeta.count;
 
   return (
     <div>
@@ -105,13 +101,13 @@ export default function Home() {
         <Container>
           <FlexBar>
             <Nav setFilter={setFilter} filter={filter} />
-            <Select/>
+            <Select sortField={sortField} setSortField={setSortField} sortOrder={sortOrder} setSortOrder={setSortOrder}/>
           </FlexBar>
-          <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>
+          {count && <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>}
           <Grid>
-            {products.map((item, i) => (<Product key={i} {...item} />))}
+            {products && products.map((item, i) => (<Product key={i} {...item} />))}
           </Grid>
-          <Pagination pages={Math.trunc(count/PER_PAGE)} page={page} setPage={setPage}/>
+          {count && <Pagination pages={Math.trunc(count/PER_PAGE)} page={page} setPage={setPage}/>}
         </Container>
       </Main>
       <footer>
