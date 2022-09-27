@@ -31,15 +31,16 @@ const Page = styled.button`
 
 export default function Pagination({ pages, page, setPage }) {
   const pageJSX = [];
-  for (let i=1;i<=pages;i++) {
-    pageJSX.push(<Page key={i} onClick={() => setPage(i)} active={page === i}>{i}</Page>);
+  for (let i=0;i<pages;i++) {
+    pageJSX.push(<Page key={i} onClick={() => setPage(i)} active={page === i}>{i+1}</Page>);
   }
-
+  console.log(pages);
+  console.log(page);
   return (
     <Container>
       {pageJSX}
-      {<Page key={'prev'} onClick={() => page !== 1 && setPage(page-1)} >&lt;</Page>}
-      {<Page key={'next'} onClick={() => page+1 <= pages && setPage(page+1)} last>&gt;</Page>}
+      {<Page key={'prev'} onClick={() => page > 0 && setPage(page-1)} >&lt;</Page>}
+      {<Page key={'next'} onClick={() => page+1 < Math.ceil(pages) && setPage(page+1)} last>&gt;</Page>}
     </Container>
   )
 }

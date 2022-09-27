@@ -61,7 +61,7 @@ query Products($perPage: Int!, $page: Int!, $filter: ProductFilter!, $sortField:
 const PER_PAGE = 12;
 
 export default function Home() {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [filter, setFilter] = useState({});
   const [sortField, setSortField] = useState('');
   const [sortOrder, setSortOrder] = useState('');
