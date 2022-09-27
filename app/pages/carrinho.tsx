@@ -97,7 +97,7 @@ export default function ShoppingCart() {
             </BackButton>
             <Title>SEU CARRINHO</Title>
             <Total>Total (3 produtos) <strong>R$161,00</strong></Total>
-            {products.map(p => <Product {...p} />)}
+            {products.map((p, i) => <Product key={i} {...p} />)}
           </Cart>
           <Checkout shippingPriceInCents={4000} subtotalInCents={products.reduce((acc, p) => acc + p.price_in_cents, 0)}/>
         </Container>

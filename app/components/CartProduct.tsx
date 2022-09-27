@@ -83,8 +83,8 @@ export default function CartProduct({ description, image_url, name, price_in_cen
       <Name>{name}</Name>
       <Description>{description}</Description>
       <Price>R$ {formatPrice(price_in_cents)}</Price>
-      <QuantitySelect>
-          <option selected>1</option>
+      <QuantitySelect defaultValue={1}>
+          <option>1</option>
       </QuantitySelect>
       <RemoveButton>
           <Image
