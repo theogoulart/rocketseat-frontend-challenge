@@ -38,8 +38,8 @@ export default function Pagination({ pages, page, setPage }) {
   return (
     <Container>
       {pageJSX}
-      {page !== 1 && <Page key={'prev'} onClick={() => setPage(page-1)} >&lt;</Page>}
-      {page !== pages && <Page key={'next'} onClick={() => setPage(page+1)} last>&gt;</Page>}
+      {<Page key={'prev'} onClick={() => page !== 1 && setPage(page-1)} >&lt;</Page>}
+      {<Page key={'next'} onClick={() => page+1 <= pages && setPage(page+1)} last>&gt;</Page>}
     </Container>
   )
 }

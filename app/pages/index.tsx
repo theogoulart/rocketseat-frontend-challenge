@@ -111,7 +111,7 @@ export default function Home() {
           <Grid>
             {products.map((item, i) => (<Product key={i} {...item} />))}
           </Grid>
-          <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>
+          <Pagination pages={Math.trunc(count/PER_PAGE)} page={page} setPage={setPage}/>
         </Container>
       </Main>
       <footer>
