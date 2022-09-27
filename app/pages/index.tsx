@@ -100,7 +100,7 @@ export default function Home() {
       <Main>
         <Container>
           <FlexBar>
-            <Nav setFilter={setFilter} filter={filter} />
+            <Nav setPage={setPage} setFilter={setFilter} filter={filter} />
             <Select sortField={sortField} setSortField={setSortField} sortOrder={sortOrder} setSortOrder={setSortOrder}/>
           </FlexBar>
           {count && <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>}

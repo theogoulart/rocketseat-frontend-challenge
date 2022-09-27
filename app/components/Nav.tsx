@@ -23,12 +23,12 @@ const Link = styled.button`
   `}
 `
 
-export default function Nav({ setFilter, filter }) {
+export default function Nav({ setPage, setFilter, filter }) {
   return (
     <Container>
-      <Link onClick={() => setFilter({})} active={Object.keys(filter).length === 0 }>TODOS OS PRODUTOS</Link>
-      <Link onClick={() => setFilter({category: "t-shirts"})} active={filter.category === "t-shirts"}>CAMISETAS</Link>
-      <Link onClick={() => setFilter({category: "mugs"})} active={filter.category === "mugs"}>CANECAS</Link>
+      <Link onClick={() => { setFilter({}); setPage(0) } } active={Object.keys(filter).length === 0 }>TODOS OS PRODUTOS</Link>
+      <Link onClick={() => { setFilter({category: "t-shirts"}); setPage(0) } } active={filter.category === "t-shirts"}>CAMISETAS</Link>
+      <Link onClick={() => { setFilter({category: "mugs"}); setPage(0) } } active={filter.category === "mugs"}>CANECAS</Link>
     </Container>
   )
 }
@@ -36,4 +36,5 @@ export default function Nav({ setFilter, filter }) {
 Nav.propTypes = {
   filter: PropTypes.object.isRequired,
   setFilter: PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
 };
