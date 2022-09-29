@@ -97,7 +97,7 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header filter={filter} setFilter={setFilter}/>
+      <Header setFilter={setFilter}/>
       <Main>
         <Container>
           <FlexBar>

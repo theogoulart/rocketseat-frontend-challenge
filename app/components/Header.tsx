@@ -75,7 +75,7 @@ const Notifications = styled.div`
   width: 17px;
 `
 
-export default function Header({ filter, setFilter }) {
+export default function Header({ setFilter }) {
   const [ input, setInput ] = useState('');
   const handleKeyDown = e => {
     if (e.key === 'Enter') {
@@ -119,6 +119,5 @@ export default function Header({ filter, setFilter }) {
 }
 
 Header.propTypes = {
-  filter: PropTypes.object.isRequired,
   setFilter: PropTypes.func.isRequired,
 };
