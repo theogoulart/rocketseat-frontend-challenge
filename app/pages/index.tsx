@@ -88,6 +88,7 @@ export default function Home() {
 
   const products = allProductsData?.allProducts;
   const count = _allProductsMetaData?._allProductsMeta.count;
+  const hasResults = Boolean(count && products);
 
   return (
     <div>
@@ -103,11 +104,16 @@ export default function Home() {
             <Nav setPage={setPage} setFilter={setFilter} filter={filter} />
             <Select sortField={sortField} setSortField={setSortField} sortOrder={sortOrder} setSortOrder={setSortOrder}/>
           </FlexBar>
-          {count && <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>}
-          <Grid>
-            {products && products.map((item, i) => (<Product key={i} {...item} />))}
-          </Grid>
-          {count && <Pagination pages={Math.trunc(count/PER_PAGE)} page={page} setPage={setPage}/>}
+          {!hasResults && "Nenhum resultado encontrado. Altere sua pesquisa ou procure em outra categoria :)"}
+          {hasResults && 
+          <>
+            <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>
+            <Grid>
+              {products.map((item, i) => (<Product key={i} {...item} />))}
+            </Grid>
+            <Pagination pages={Math.trunc(count/PER_PAGE)} page={page} setPage={setPage}/>
+          </>
+          }
         </Container>
       </Main>
       <footer>
