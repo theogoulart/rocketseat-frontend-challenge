@@ -44,7 +44,7 @@ const Option = styled.div`
   font-size: 14px;
   cursor: pointer;
   &:hover {
-    background: #DEDEDE;
+    color: #FFA585;
   }
 `
 
