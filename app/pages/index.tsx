@@ -62,7 +62,7 @@ const PER_PAGE = 12;
 
 export default function Home() {
   const [page, setPage] = useState(0);
-  const [filter, setFilter] = useState({});
+  const [filter, setFilter] = useState({ q: '' });
   const [sortField, setSortField] = useState('');
   const [sortOrder, setSortOrder] = useState('');
 
@@ -96,7 +96,7 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
+      <Header filter={filter} setFilter={setFilter}/>
       <Main>
         <Container>
           <FlexBar>

@@ -26,9 +26,9 @@ const Link = styled.button`
 export default function Nav({ setPage, setFilter, filter }) {
   return (
     <Container>
-      <Link onClick={() => { setFilter({}); setPage(0) } } active={Object.keys(filter).length === 0 }>TODOS OS PRODUTOS</Link>
-      <Link onClick={() => { setFilter({category: "t-shirts"}); setPage(0) } } active={filter.category === "t-shirts"}>CAMISETAS</Link>
-      <Link onClick={() => { setFilter({category: "mugs"}); setPage(0) } } active={filter.category === "mugs"}>CANECAS</Link>
+      <Link onClick={() => { setFilter({ q: filter.q }); setPage(0) } } active={ !filter.hasOwnProperty('category') }>TODOS OS PRODUTOS</Link>
+      <Link onClick={() => { setFilter({ q: filter.q, category: "t-shirts" }); setPage(0) } } active={filter.category === "t-shirts"}>CAMISETAS</Link>
+      <Link onClick={() => { setFilter({ q: filter.q, category: "mugs" }); setPage(0) } } active={filter.category === "mugs"}>CANECAS</Link>
     </Container>
   )
 }

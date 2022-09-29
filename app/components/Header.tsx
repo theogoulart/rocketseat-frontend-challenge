@@ -1,4 +1,6 @@
+import PropTypes from "prop-types"
 import Link from 'next/link'
+import { useState } from "react"
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
 
@@ -73,7 +75,14 @@ const Notifications = styled.div`
   width: 17px;
 `
 
-export default function Header() {
+export default function Header({ filter, setFilter }) {
+  const [ input, setInput ] = useState('');
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      setFilter({ q: input });
+    }
+  };
+
   return (
     <Container>
       <Inner>
@@ -83,8 +92,8 @@ export default function Header() {
           </Logo>
         </Link>
         <SearchWrapper>
-          <Search placeholder='Procurando por algo específico?' />
-          <Submit>
+          <Search onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} placeholder='Procurando por algo específico?' />
+          <Submit onClick={() => setFilter({ q: input })}>
             <Image
               src='/magnifier.svg'
               width={24}
@@ -108,3 +117,8 @@ export default function Header() {
     </Container>
   )
 }
+
+Header.propTypes = {
+  filter: PropTypes.object.isRequired,
+  setFilter: PropTypes.func.isRequired,
+};
