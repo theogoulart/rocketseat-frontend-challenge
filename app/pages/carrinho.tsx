@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import { getCartProducts, getCartProductCount } from '../utils/tools'
+import { getCartProducts, getCartProductCount, formatPrice } from '../utils/tools'
 
 import Head from 'next/head'
 import Header from '../components/Header'
@@ -69,6 +69,9 @@ export default function ShoppingCart() {
 
   const subtotalInCents = Object.values(products).reduce((acc, p) => acc + p.price_in_cents, 0);
   const shippingPriceInCents = subtotalInCents > 90000 ? 0 : 4000;
+  const [ totalProducts, totalInCents ] = Object.values(products)
+    .reduce((acc, p) => [acc[0] + p.quantity, acc[1] + p.price_in_cents], [0, 0]);
+
   return (
     <div>
       <Head>
@@ -91,7 +94,7 @@ export default function ShoppingCart() {
               Voltar
             </BackButton>
             <Title>SEU CARRINHO</Title>
-            <Total>Total (3 produtos) <strong>R$161,00</strong></Total>
+            <Total>Total ({totalProducts} produtos) <strong>R${formatPrice(totalInCents)}</strong></Total>
             {Object.values(products).map((p, i) => <Product key={i} {...p} />)}
           </Cart>
           <Checkout shippingPriceInCents={shippingPriceInCents} subtotalInCents={subtotalInCents}/>
