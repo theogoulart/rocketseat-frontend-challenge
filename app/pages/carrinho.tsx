@@ -67,10 +67,15 @@ export default function ShoppingCart() {
     setProducts(getCartProducts());
   }, []);
 
-  const subtotalInCents = Object.values(products).reduce((acc, p) => acc + p.price_in_cents, 0);
+  const [ totalProducts, subtotalInCents ] = Object.values(products)
+    .reduce((acc, p) => [acc[0] + p.quantity, acc[1] + p.price_in_cents * p.quantity], [0, 0]);
   const shippingPriceInCents = subtotalInCents > 90000 ? 0 : 4000;
-  const [ totalProducts, totalInCents ] = Object.values(products)
-    .reduce((acc, p) => [acc[0] + p.quantity, acc[1] + p.price_in_cents], [0, 0]);
+
+  const quantityChangeHandler = (id, quantity) => {
+    const newProducts = JSON.parse(JSON.stringify(products));
+    newProducts[id].quantity = parseInt(quantity);
+    setProducts(newProducts);
+  }
 
   return (
     <div>
@@ -94,8 +99,8 @@ export default function ShoppingCart() {
               Voltar
             </BackButton>
             <Title>SEU CARRINHO</Title>
-            <Total>Total ({totalProducts} produtos) <strong>R${formatPrice(totalInCents)}</strong></Total>
-            {Object.values(products).map((p, i) => <Product key={i} {...p} />)}
+            <Total>Total ({totalProducts} produtos) <strong>R${formatPrice(subtotalInCents)}</strong></Total>
+            {Object.values(products).map((p, i) => <Product quantityChangeHandler={quantityChangeHandler} key={i} {...p} />)}
           </Cart>
           <Checkout shippingPriceInCents={shippingPriceInCents} subtotalInCents={subtotalInCents}/>
         </Container>
