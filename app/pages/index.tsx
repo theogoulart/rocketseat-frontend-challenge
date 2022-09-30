@@ -122,7 +122,8 @@ export default function Home() {
               setSortOrder={setSortOrder}
             />
           </FlexBar>
-          {!hasResults && "Nenhum resultado encontrado. Altere sua pesquisa ou procure em outra categoria :)"}
+          {loading && "Carregando..."}
+          {!loading && !hasResults && "Nenhum resultado encontrado. Altere sua pesquisa ou procure em outra categoria :)"}
           {hasResults && 
           <>
             <Pagination
