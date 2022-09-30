@@ -85,6 +85,7 @@ export default function ShoppingCart() {
     delete newProducts[id];
     setProducts(newProducts);
     setCartProducts(newProducts);
+    setNotifications(notifications-1);
   }
 
   const searchProducts = (input) => {
