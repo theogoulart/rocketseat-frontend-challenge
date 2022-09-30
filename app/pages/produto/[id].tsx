@@ -94,7 +94,7 @@ export default function Product({ product }) {
   const [ notifications, setNotifications ] = useState(0);
   useEffect(() => {
     setNotifications(getCartProductCount());
-  });
+  }, []);
 
   const addProductToCart = () => {
     const products = getCartProducts();

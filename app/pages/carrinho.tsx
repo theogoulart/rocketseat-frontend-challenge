@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
+
+import { getCartProducts, getCartProductCount } from '../utils/tools'
 
 import Head from 'next/head'
 import Header from '../components/Header'
@@ -56,23 +59,13 @@ const Total = styled.p`
 `
 
 export default function ShoppingCart() {
-  const products = [
-    {
-      "name": "Caneca de cerâmica rústica",
-      "description": "Aut nihil corporis nulla temporibus ut id sed qui eos. Rerum et molestiae sequi tempora facere natus ratione totam. Autem dolorum eaque facilis et atque voluptatem itaque. Enim quia vel voluptas. Iure similique dolores. Dolor quis et explicabo recusandae.",
-      "image_url": "https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg",
-      "price_in_cents": 3925,
-      "quantity": 1
-    },
-    {
-      "name": "Caneca de cerâmica rústica",
-      "description": "Aut nihil corporis nulla temporibus ut id sed qui eos. Rerum et molestiae sequi tempora facere natus ratione totam. Autem dolorum eaque facilis et atque voluptatem itaque. Enim quia vel voluptas. Iure similique dolores. Dolor quis et explicabo recusandae.",
-      "image_url": "https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg",
-      "price_in_cents": 3925,
-      "quantity": 1
-    }
-  ];
+  const [ products, setProducts ] = useState([]);
+  const [ notifications, setNotifications ] = useState(0);
 
+  useEffect(() => {
+    setNotifications(getCartProductCount());
+    setProducts(getCartProducts());
+  }, []);
 
   return (
     <div>
@@ -81,7 +74,7 @@ export default function ShoppingCart() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
+      <Header notifications={notifications} searchSubmitHandler={ (input) => console.log(input) }/>
       <Main>
         <Container>
           <Cart>

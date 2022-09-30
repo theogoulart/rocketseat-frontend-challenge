@@ -65,7 +65,7 @@ export default function Home() {
   const [ notifications, setNotifications ] = useState(0);
   useEffect(() => {
     setNotifications(getCartProductCount());
-  });
+  }, []);
 
   const [page, setPage] = useState(0);
   const [filter, setFilter] = useState({ q: '' });
