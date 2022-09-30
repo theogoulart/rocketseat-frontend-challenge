@@ -75,11 +75,11 @@ const Notifications = styled.div`
   width: 17px;
 `
 
-export default function Header({ setFilter }) {
+export default function Header({ notifications, searchSubmitHandler }) {
   const [ input, setInput ] = useState('');
   const handleKeyDown = e => {
     if (e.key === 'Enter') {
-      setFilter({ q: input });
+      searchSubmitHandler(input);
     }
   };
 
@@ -93,7 +93,7 @@ export default function Header({ setFilter }) {
         </Link>
         <SearchWrapper>
           <Search onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} placeholder='Procurando por algo específico?' />
-          <Submit onClick={() => setFilter({ q: input })}>
+          <Submit onClick={() => searchSubmitHandler(input)}>
             <Image
               src='/magnifier.svg'
               width={24}
@@ -109,7 +109,7 @@ export default function Header({ setFilter }) {
               height={24}
             />
             <Notifications>
-              2
+              {notifications}
             </Notifications>
           </ShoppingCart>
         </Link>
@@ -119,5 +119,6 @@ export default function Header({ setFilter }) {
 }
 
 Header.propTypes = {
-  setFilter: PropTypes.func.isRequired,
+  notifications: PropTypes.number.isRequired,
+  searchSubmitHandler: PropTypes.func.isRequired,
 };

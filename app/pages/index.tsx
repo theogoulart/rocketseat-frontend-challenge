@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import client from "../apollo-client";
 import Link from 'next/link'
+import { getCartProductCount } from '../utils/tools'
 
 import Head from 'next/head'
 import Product from '../components/ProductLink'
@@ -9,7 +10,7 @@ import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Select from '../components/Select'
 import styled from 'styled-components'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Main = styled.main`
   display: flex;
@@ -61,6 +62,11 @@ query Products($perPage: Int!, $page: Int!, $filter: ProductFilter!, $sortField:
 const PER_PAGE = 12;
 
 export default function Home() {
+  const [ notifications, setNotifications ] = useState(0);
+  useEffect(() => {
+    setNotifications(getCartProductCount());
+  });
+
   const [page, setPage] = useState(0);
   const [filter, setFilter] = useState({ q: '' });
   const [sortField, setSortField] = useState('');
@@ -97,7 +103,7 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header setFilter={setFilter}/>
+      <Header notifications={notifications} searchSubmitHandler={(input) => setFilter({ q: input })}/>
       <Main>
         <Container>
           <FlexBar>

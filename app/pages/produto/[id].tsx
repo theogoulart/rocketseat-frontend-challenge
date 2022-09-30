@@ -1,13 +1,14 @@
 import { gql } from "@apollo/client";
+import { useEffect, useState } from "react";
+import styled from 'styled-components'
+import Link from 'next/link'
 import client from "../../apollo-client";
 
-import Link from 'next/link'
-import Image from 'next/image'
+import { formatPrice, getCartProducts, getCartProductCount } from '../../utils/tools'
 
+import Image from 'next/image'
 import Head from 'next/head'
 import Header from '../../components/Header'
-import styled from 'styled-components'
-import { formatPrice } from '../../utils/tools'
 
 const Main = styled.main`
   align-items: center;
@@ -90,6 +91,24 @@ const ButtonIcon = styled.span`
 `
 
 export default function Product({ product }) {
+  const [ notifications, setNotifications ] = useState(0);
+  useEffect(() => {
+    setNotifications(getCartProductCount());
+  });
+
+  const addProductToCart = () => {
+    const products = getCartProducts();
+    if (products.hasOwnProperty(product.id)) {
+      products[product.id].quantity++;
+    } else {
+      products[product.id] = product;
+      products[product.id].quantity = 1;
+    }
+
+    localStorage.setItem('products', JSON.stringify(products));
+    setNotifications(notifications+1);
+  }
+
   return (
     <div>
       <Head>
@@ -97,7 +116,7 @@ export default function Product({ product }) {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
+      <Header searchSubmitHandler={ (input) => console.log(input) } notifications={notifications || 0} />
       <Main>
         <Container>
           <Link href="/">
@@ -128,7 +147,7 @@ export default function Product({ product }) {
             <Disclaimer>*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</Disclaimer>
             <span>DESCRIÇÃO</span>
             <Description>{product.description}</Description>
-            <AddToCartButton>
+            <AddToCartButton onClick={ () => addProductToCart() }>
               <ButtonIcon>
                 <Image
                   src='/shopping-bag-w.svg'
@@ -150,6 +169,7 @@ export async function getServerSideProps({ params }) {
     query: gql`
       query Product {
         Product(id: "${params.id}") {
+          id
           name
           description
           image_url
