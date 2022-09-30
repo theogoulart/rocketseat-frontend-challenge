@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import client from "../apollo-client";
-import Link from 'next/link'
+import styled from 'styled-components'
+
 import { getCartProductCount } from '../utils/tools'
 
 import Head from 'next/head'
@@ -9,8 +11,6 @@ import Pagination from '../components/Pagination'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Select from '../components/Select'
-import styled from 'styled-components'
-import { useEffect, useState } from "react";
 
 const Main = styled.main`
   display: flex;
@@ -103,21 +103,41 @@ export default function Home() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header notifications={notifications} searchSubmitHandler={(input) => setFilter({ q: input })}/>
+      <Header
+        notifications={notifications}
+        searchSubmitHandler={(input) => setFilter({ q: input })}
+      />
       <Main>
         <Container>
           <FlexBar>
-            <Nav setPage={setPage} setFilter={setFilter} filter={filter} />
-            <Select sortField={sortField} setSortField={setSortField} sortOrder={sortOrder} setSortOrder={setSortOrder}/>
+            <Nav
+              setPage={setPage}
+              setFilter={setFilter}
+              filter={filter}
+            />
+            <Select
+              sortField={sortField}
+              setSortField={setSortField}
+              sortOrder={sortOrder}
+              setSortOrder={setSortOrder}
+            />
           </FlexBar>
           {!hasResults && "Nenhum resultado encontrado. Altere sua pesquisa ou procure em outra categoria :)"}
           {hasResults && 
           <>
-            <Pagination pages={count/PER_PAGE} page={page} setPage={setPage}/>
+            <Pagination
+              pages={count/PER_PAGE}
+              page={page}
+              setPage={setPage}
+            />
             <Grid>
               {products.map((item, i) => (<Product key={i} {...item} />))}
             </Grid>
-            <Pagination pages={Math.trunc(count/PER_PAGE)} page={page} setPage={setPage}/>
+            <Pagination
+              pages={count/PER_PAGE}
+              page={page}
+              setPage={setPage}
+            />
           </>
           }
         </Container>

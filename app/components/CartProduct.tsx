@@ -69,7 +69,16 @@ const QuantitySelect = styled.select`
   appearance: none;
 `
 
-export default function CartProduct({ id, quantity, description, image_url, name, price_in_cents, quantityChangeHandler, removeProductHandler }) {
+export default function CartProduct({
+  id,
+  quantity,
+  description,
+  image_url,
+  name,
+  price_in_cents,
+  quantityChangeHandler,
+  removeProductHandler
+}) {
   return (
     <Container>
       <ImageWrapper>

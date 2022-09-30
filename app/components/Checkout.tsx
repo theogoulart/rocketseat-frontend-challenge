@@ -58,7 +58,10 @@ const CheckoutButton = styled.button`
   width: 303px;
 `
 
-export default function Checkout({subtotalInCents, shippingPriceInCents}) {
+export default function Checkout({
+  subtotalInCents,
+  shippingPriceInCents
+}) {
   const totalInCents = subtotalInCents + shippingPriceInCents;
   return (
     <Container>

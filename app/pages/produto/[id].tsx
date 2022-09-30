@@ -1,12 +1,12 @@
-import { gql } from "@apollo/client";
 import { useEffect, useState } from "react";
+import { gql } from "@apollo/client";
 import styled from 'styled-components'
+import Image from 'next/image'
 import Link from 'next/link'
 import client from "../../apollo-client";
 
 import { formatPrice, getCartProducts, setCartProducts, getCartProductCount } from '../../utils/tools'
 
-import Image from 'next/image'
 import Head from 'next/head'
 import Header from '../../components/Header'
 
@@ -116,7 +116,10 @@ export default function Product({ product }) {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header searchSubmitHandler={ (input) => console.log(input) } notifications={notifications || 0} />
+      <Header
+        searchSubmitHandler={ (input) => console.log(input) }
+        notifications={notifications || 0}
+      />
       <Main>
         <Container>
           <Link href="/">
@@ -144,7 +147,9 @@ export default function Product({ product }) {
             <span>{product.category}</span>
             <Name>{product.name}</Name>
             <Price>R$ {formatPrice(product.price_in_cents)}</Price>
-            <Disclaimer>*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</Disclaimer>
+            <Disclaimer>
+              *Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.
+            </Disclaimer>
             <span>DESCRIÇÃO</span>
             <Description>{product.description}</Description>
             <AddToCartButton onClick={ () => addProductToCart() }>
