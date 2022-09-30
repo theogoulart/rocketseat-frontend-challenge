@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from "next/router"
 import styled from 'styled-components'
 import Image from 'next/image'
 
@@ -59,6 +60,7 @@ const Total = styled.p`
 `
 
 export default function ShoppingCart() {
+  const router = useRouter();
   const [ products, setProducts ] = useState([]);
   const [ notifications, setNotifications ] = useState(0);
 
@@ -85,6 +87,10 @@ export default function ShoppingCart() {
     setCartProducts(newProducts);
   }
 
+  const searchProducts = (input) => {
+    input && router.push(`/?search=${encodeURIComponent(input)}`);
+  }
+
   return (
     <div>
       <Head>
@@ -94,7 +100,7 @@ export default function ShoppingCart() {
       </Head>
       <Header
         notifications={notifications}
-        searchSubmitHandler={ (input) => console.log(input) }
+        searchSubmitHandler={searchProducts}
       />
       <Main>
         <Container>

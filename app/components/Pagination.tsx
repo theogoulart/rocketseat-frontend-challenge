@@ -34,8 +34,7 @@ export default function Pagination({ pages, page, setPage }) {
   for (let i=0;i<pages;i++) {
     pageJSX.push(<Page key={i} onClick={() => setPage(i)} active={page === i}>{i+1}</Page>);
   }
-  console.log(pages);
-  console.log(page);
+
   return (
     <Container>
       {pageJSX}

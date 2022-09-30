@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { gql } from "@apollo/client";
+import { useEffect, useState } from "react"
+import { gql } from "@apollo/client"
+import { useRouter } from "next/router"
 import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
-import client from "../../apollo-client";
+import client from "../../apollo-client"
 
 import { formatPrice, getCartProducts, setCartProducts, getCartProductCount } from '../../utils/tools'
 
@@ -91,6 +92,7 @@ const ButtonIcon = styled.span`
 `
 
 export default function Product({ product }) {
+  const router = useRouter();
   const [ notifications, setNotifications ] = useState(0);
   useEffect(() => {
     setNotifications(getCartProductCount());
@@ -109,6 +111,10 @@ export default function Product({ product }) {
     setNotifications(notifications+1);
   }
 
+  const searchProducts = (input) => {
+    input && router.push(`/?search=${encodeURIComponent(input)}`);
+  }
+
   return (
     <div>
       <Head>
@@ -117,7 +123,7 @@ export default function Product({ product }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header
-        searchSubmitHandler={ (input) => console.log(input) }
+        searchSubmitHandler={searchProducts}
         notifications={notifications || 0}
       />
       <Main>

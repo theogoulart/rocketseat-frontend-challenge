@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
+import { useRouter } from "next/router"
 import client from "../apollo-client";
 import styled from 'styled-components'
 
@@ -62,13 +63,14 @@ query Products($perPage: Int!, $page: Int!, $filter: ProductFilter!, $sortField:
 const PER_PAGE = 12;
 
 export default function Home() {
+  const router = useRouter();
   const [ notifications, setNotifications ] = useState(0);
   useEffect(() => {
     setNotifications(getCartProductCount());
   }, []);
 
   const [page, setPage] = useState(0);
-  const [filter, setFilter] = useState({ q: '' });
+  const [filter, setFilter] = useState({ q: decodeURIComponent(router.query.search?.toString() || '')});
   const [sortField, setSortField] = useState('');
   const [sortOrder, setSortOrder] = useState('');
 
@@ -92,6 +94,13 @@ export default function Home() {
     }
   );
 
+  const searchProducts = (input) => {
+    if (input) {
+      setFilter({ q: input });
+      router.push(`/?search=${encodeURIComponent(input)}`);
+    }
+  }
+
   const products = allProductsData?.allProducts;
   const count = _allProductsMetaData?._allProductsMeta.count;
   const hasResults = Boolean(count && products);
@@ -104,8 +113,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header
+        query={filter.q}
         notifications={notifications}
-        searchSubmitHandler={(input) => setFilter({ q: input })}
+        searchSubmitHandler={searchProducts}
       />
       <Main>
         <Container>
