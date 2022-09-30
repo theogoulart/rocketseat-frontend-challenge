@@ -65,7 +65,7 @@ export default function Checkout({subtotalInCents, shippingPriceInCents}) {
       <Summary>
         <Title>RESUMO DO PEDIDO</Title>
         <Line><span>Subtotal de produtos</span><span>R$ {formatPrice(subtotalInCents)}</span></Line>
-        <Line><span>Entrega</span><span>R$ {formatPrice(shippingPriceInCents)}</span></Line>
+        <Line><span>Entrega</span><span>{shippingPriceInCents === 0 ? 'grátis' : `R$ ${formatPrice(shippingPriceInCents)}`}</span></Line>
         <Total><span>Total</span><span>R$ {formatPrice(totalInCents)}</span></Total>
         <CheckoutButton>FINALIZAR A COMPRA</CheckoutButton>
       </Summary>

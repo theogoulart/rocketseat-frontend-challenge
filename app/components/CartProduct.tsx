@@ -69,28 +69,28 @@ const QuantitySelect = styled.select`
   appearance: none;
 `
 
-export default function CartProduct({ description, image_url, name, price_in_cents }) {
+export default function CartProduct({ id, quantity, description, image_url, name, price_in_cents }) {
   return (
     <Container>
       <ImageWrapper>
       <Image
-          src={image_url}
-          height={211}
-          width={232}
+        src={image_url}
+        height={211}
+        width={232}
       />
       </ImageWrapper>
       <Details>
       <Name>{name}</Name>
       <Description>{description}</Description>
       <Price>R$ {formatPrice(price_in_cents)}</Price>
-      <QuantitySelect defaultValue={1}>
-          <option>1</option>
+      <QuantitySelect defaultValue={quantity}>
+          {[...(Array(10))].map((_, i) => <option key={i+1} value={i+1}>{i+1}</option>)}
       </QuantitySelect>
       <RemoveButton>
           <Image
-          src='/trash-bin.svg'
-          height={24}
-          width={24}
+            src='/trash-bin.svg'
+            height={24}
+            width={24}
           />
       </RemoveButton>
       </Details>
@@ -99,6 +99,8 @@ export default function CartProduct({ description, image_url, name, price_in_cen
 }
 
 CartProduct.propTypes = {
+  id: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   image_url: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

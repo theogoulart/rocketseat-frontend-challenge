@@ -4,7 +4,7 @@ const formatPrice = (priceInCents: number): string => {
 
 const getCartProducts = () => {
   const products = localStorage.getItem('products');
-  return products ? Object.values(JSON.parse(products)) : [];
+  return products ? JSON.parse(products) : [];
 }
 
 const getCartProductCount = () => {

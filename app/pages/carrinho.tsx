@@ -67,6 +67,8 @@ export default function ShoppingCart() {
     setProducts(getCartProducts());
   }, []);
 
+  const subtotalInCents = Object.values(products).reduce((acc, p) => acc + p.price_in_cents, 0);
+  const shippingPriceInCents = subtotalInCents > 90000 ? 0 : 4000;
   return (
     <div>
       <Head>
@@ -90,9 +92,9 @@ export default function ShoppingCart() {
             </BackButton>
             <Title>SEU CARRINHO</Title>
             <Total>Total (3 produtos) <strong>R$161,00</strong></Total>
-            {products.map((p, i) => <Product key={i} {...p} />)}
+            {Object.values(products).map((p, i) => <Product key={i} {...p} />)}
           </Cart>
-          <Checkout shippingPriceInCents={4000} subtotalInCents={products.reduce((acc, p) => acc + p.price_in_cents, 0)}/>
+          <Checkout shippingPriceInCents={shippingPriceInCents} subtotalInCents={subtotalInCents}/>
         </Container>
       </Main>
     </div>
