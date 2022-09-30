@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import { getCartProducts, getCartProductCount, formatPrice } from '../utils/tools'
+import { formatPrice, getCartProducts, getCartProductCount, setCartProducts } from '../utils/tools'
 
 import Head from 'next/head'
 import Header from '../components/Header'
@@ -75,6 +75,14 @@ export default function ShoppingCart() {
     const newProducts = JSON.parse(JSON.stringify(products));
     newProducts[id].quantity = parseInt(quantity);
     setProducts(newProducts);
+    setCartProducts(newProducts);
+  }
+  
+  const removeProductHandler = (id) => {
+    const newProducts = JSON.parse(JSON.stringify(products));
+    delete newProducts[id];
+    setProducts(newProducts);
+    setCartProducts(newProducts);
   }
 
   return (
@@ -84,7 +92,10 @@ export default function ShoppingCart() {
         <meta name="description" content="Compre camisas e acessórios!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header notifications={notifications} searchSubmitHandler={ (input) => console.log(input) }/>
+      <Header
+        notifications={notifications}
+        searchSubmitHandler={ (input) => console.log(input) }
+      />
       <Main>
         <Container>
           <Cart>
@@ -100,9 +111,19 @@ export default function ShoppingCart() {
             </BackButton>
             <Title>SEU CARRINHO</Title>
             <Total>Total ({totalProducts} produtos) <strong>R${formatPrice(subtotalInCents)}</strong></Total>
-            {Object.values(products).map((p, i) => <Product quantityChangeHandler={quantityChangeHandler} key={i} {...p} />)}
+            {Object.values(products).map((p, i) => 
+              <Product
+                quantityChangeHandler={quantityChangeHandler}
+                key={i}
+                {...p}
+                removeProductHandler={removeProductHandler}
+              />
+            )}
           </Cart>
-          <Checkout shippingPriceInCents={shippingPriceInCents} subtotalInCents={subtotalInCents}/>
+          <Checkout
+            shippingPriceInCents={shippingPriceInCents}
+            subtotalInCents={subtotalInCents}
+          />
         </Container>
       </Main>
     </div>

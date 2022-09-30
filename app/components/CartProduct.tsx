@@ -69,7 +69,7 @@ const QuantitySelect = styled.select`
   appearance: none;
 `
 
-export default function CartProduct({ id, quantity, description, image_url, name, price_in_cents, quantityChangeHandler }) {
+export default function CartProduct({ id, quantity, description, image_url, name, price_in_cents, quantityChangeHandler, removeProductHandler }) {
   return (
     <Container>
       <ImageWrapper>
@@ -83,10 +83,15 @@ export default function CartProduct({ id, quantity, description, image_url, name
       <Name>{name}</Name>
       <Description>{description}</Description>
       <Price>R$ {formatPrice(price_in_cents * quantity)}</Price>
-      <QuantitySelect onChange={(e) => {quantityChangeHandler(id, e.target.value)}} defaultValue={quantity}>
+      <QuantitySelect
+        onChange={(e) => {quantityChangeHandler(id, e.target.value)}}
+        defaultValue={quantity}
+      >
           {[...(Array(10))].map((_, i) => <option key={i+1} value={i+1}>{i+1}</option>)}
       </QuantitySelect>
-      <RemoveButton>
+      <RemoveButton
+        onClick={() => removeProductHandler(id)}
+      >
           <Image
             src='/trash-bin.svg'
             height={24}
@@ -106,4 +111,5 @@ CartProduct.propTypes = {
   name: PropTypes.string.isRequired,
   price_in_cents: PropTypes.number.isRequired,
   quantityChangeHandler: PropTypes.func.isRequired,
+  removeProductHandler: PropTypes.func.isRequired,
 };

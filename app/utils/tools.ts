@@ -7,9 +7,13 @@ const getCartProducts = () => {
   return products ? JSON.parse(products) : [];
 }
 
+const setCartProducts = (products) => {
+  localStorage.setItem('products', JSON.stringify(products));
+}
+
 const getCartProductCount = () => {
   const products = localStorage.getItem('products');
   return products ? Object.keys(JSON.parse(products)).length : 0;
 }
 
-export { formatPrice, getCartProducts, getCartProductCount };
+export { formatPrice, getCartProducts, getCartProductCount, setCartProducts };

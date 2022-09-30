@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import client from "../../apollo-client";
 
-import { formatPrice, getCartProducts, getCartProductCount } from '../../utils/tools'
+import { formatPrice, getCartProducts, setCartProducts, getCartProductCount } from '../../utils/tools'
 
 import Image from 'next/image'
 import Head from 'next/head'
@@ -105,7 +105,7 @@ export default function Product({ product }) {
       products[product.id].quantity = 1;
     }
 
-    localStorage.setItem('products', JSON.stringify(products));
+    setCartProducts(products);
     setNotifications(notifications+1);
   }
 
