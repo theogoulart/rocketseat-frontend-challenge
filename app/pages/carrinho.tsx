@@ -75,17 +75,19 @@ export default function ShoppingCart() {
 
   const quantityChangeHandler = (id, quantity) => {
     const newProducts = JSON.parse(JSON.stringify(products));
+    const difference = parseInt(quantity) - newProducts[id].quantity;
     newProducts[id].quantity = parseInt(quantity);
     setProducts(newProducts);
     setCartProducts(newProducts);
+    setNotifications(notifications + difference);
   }
   
   const removeProductHandler = (id) => {
     const newProducts = JSON.parse(JSON.stringify(products));
+    setNotifications(notifications - products[id].quantity);
     delete newProducts[id];
     setProducts(newProducts);
     setCartProducts(newProducts);
-    setNotifications(notifications-1);
   }
 
   const searchProducts = (input) => {
@@ -121,7 +123,7 @@ export default function ShoppingCart() {
             {Object.values(products).map((p, i) => 
               <Product
                 quantityChangeHandler={quantityChangeHandler}
-                key={i}
+                key={p.id}
                 {...p}
                 removeProductHandler={removeProductHandler}
               />
