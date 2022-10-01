@@ -37,7 +37,7 @@ const Total = styled.div`
   margin-top: 29px;
   padding-top: 8px;
 `
-const Link = styled.div`
+const Link = styled.a`
   color: #737380;
   font-size: 14px;
   margin-top: 12px;
@@ -72,10 +72,10 @@ export default function Checkout({
         <Total><span>Total</span><span>R$ {formatPrice(totalInCents)}</span></Total>
         <CheckoutButton>FINALIZAR A COMPRA</CheckoutButton>
       </Summary>
-      <Link>AJUDA</Link>
-      <Link>REEMBOLSOS</Link>
-      <Link>ENTREGAS E FRETES</Link>
-      <Link>TROCAS E DEVOLUÇÕES</Link>
+      <Link href="#">AJUDA</Link>
+      <Link href="#">REEMBOLSOS</Link>
+      <Link href="#">ENTREGAS E FRETES</Link>
+      <Link href="#">TROCAS E DEVOLUÇÕES</Link>
     </Container>
   )
 }
