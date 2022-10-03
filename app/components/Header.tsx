@@ -9,7 +9,7 @@ const Container = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 80px;
+  padding: 8px 16px;
   width: 100%;
 `
 const Inner = styled.div`
@@ -18,6 +18,9 @@ const Inner = styled.div`
   flex-direction: row;
   max-width: 1120px;
   width: 100%;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `
 const Logo = styled.a`
   color: #5D5D6D;
@@ -28,6 +31,9 @@ const Logo = styled.a`
 `
 const SearchWrapper = styled.div`
   position: relative;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 const Search = styled.input`
   background: #F3F5F6;
@@ -36,6 +42,9 @@ const Search = styled.input`
   height: 42px;
   padding: 10px 16px;
   width: 352px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 const Submit = styled.button`
   align-items: center;
@@ -59,6 +68,11 @@ const ShoppingCart = styled.a`
   position: relative;
   height: 42px;
   width: 42px;
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
 `
 const Notifications = styled.div`
   align-items: center;
