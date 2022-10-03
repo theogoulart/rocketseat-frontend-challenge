@@ -15,6 +15,7 @@ const Main = styled.main`
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding: 0 16px;
   padding-bottom: 80px;
   width: 100%;
 `
@@ -24,11 +25,22 @@ const ImageWrapper = styled.div`
   max-height: 580px;
   margin-right: 32px;
   overflow: hidden;
+  @media (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 1024px) {
+    max-width: 420px;
+    align-self: center;
+  }
 `
 const Container = styled.section`
   display: flex;
   max-width: 1120px;
   width: 100%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 const BackButton = styled.a`
   align-items: center;
@@ -41,6 +53,9 @@ const BackButton = styled.a`
   justify-content: center;
   margin-bottom: 25px;
   margin-top: 28px;
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
 `
 const ReturnIcon = styled.div`
   align-items: center;
@@ -83,6 +98,7 @@ const AddToCartButton = styled.button`
   font-size: 16px;
   justify-content: center;
   height: 44px;
+  margin-top: 32px;
   width: 100%;
 `
 const ButtonIcon = styled.span`
