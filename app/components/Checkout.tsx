@@ -13,6 +13,10 @@ const Container = styled.section`
   margin-left: 32px;
   padding: 16px 24px 24px 24px;
   width: 352px;
+  @media (max-width: 1024px) {
+    width: 100%;
+    margin-left: 0;
+  }
 `
 const Summary = styled.div`
   display: flex;

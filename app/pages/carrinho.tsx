@@ -14,6 +14,7 @@ const Main = styled.main`
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding: 0 16px;
   padding-bottom: 80px;
   width: 100%;
 `
@@ -21,6 +22,9 @@ const Container = styled.div`
   display: flex;
   max-width: 1120px;
   width: 100%;
+  @media (max-width: 1024px) {
+    flex-direction column;
+  }
 `
 const Cart = styled.section`
   display: flex;

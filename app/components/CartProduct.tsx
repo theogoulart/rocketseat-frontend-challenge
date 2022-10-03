@@ -15,6 +15,9 @@ const Container = styled.div`
 const ImageWrapper = styled.div`
   overflow: hidden;
   flex-shrink: 0;
+  @media (max-width: 768px) {
+    flex-shrink: 1;
+  }
 `
 const Details = styled.div`
   display: flex;
@@ -82,11 +85,11 @@ export default function CartProduct({
   return (
     <Container>
       <ImageWrapper>
-      <Image
-        src={image_url}
-        height={211}
-        width={232}
-      />
+        <Image
+          src={image_url}
+          height={211}
+          width={232}
+        />
       </ImageWrapper>
       <Details>
       <Name>{name}</Name>
