@@ -17,8 +17,12 @@ const Main = styled.main`
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  padding: 0 16px;
   padding-bottom: 80px;
   width: 100%;
+  @media (max-width: 768px) {
+    margin-top: 12px;
+  }
 `
 const Container = styled.section`
   align-items: center;
@@ -35,12 +39,18 @@ const Grid = styled.div`
   row-gap: 24px;
   margin-top: 36px;
   margin-bottom: 72px;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 `
 const FlexBar = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 24px;
   width: 100%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 const FETCH_PRODUCT_META = gql`

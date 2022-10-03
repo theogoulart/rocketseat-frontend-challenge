@@ -21,6 +21,10 @@ const Icon = styled.span`
 `
 const Container = styled.div`
   position: relative;
+  @media (max-width: 768px) {
+    align-self: flex-end;
+    margin-top: 16px;
+  }
 `
 const Options = styled.div`
   display: none;

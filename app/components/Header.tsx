@@ -32,6 +32,7 @@ const Logo = styled.a`
 const SearchWrapper = styled.div`
   position: relative;
   @media (max-width: 768px) {
+    margin-top: 8px;
     width: 100%;
   }
 `

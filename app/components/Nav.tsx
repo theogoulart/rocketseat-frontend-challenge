@@ -4,6 +4,8 @@ import styled, { css } from 'styled-components'
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  @media (max-width: 768px) {
+  }
 `
 
 const Link = styled.button`
