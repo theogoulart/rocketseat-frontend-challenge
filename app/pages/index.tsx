@@ -79,10 +79,10 @@ export default function Home() {
     setNotifications(getCartProductCount());
   }, []);
 
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(parseInt(router.query.page?.toString()) || 0);
   const [filter, setFilter] = useState({ q: decodeURIComponent(router.query.search?.toString() || '')});
-  const [sortField, setSortField] = useState('');
-  const [sortOrder, setSortOrder] = useState('');
+  const [sortField, setSortField] = useState(router.query.sort?.toString() || '');
+  const [sortOrder, setSortOrder] = useState(router.query.order?.toString() || '');
 
   const { data: _allProductsMetaData, loading: loadingMeta } = useQuery(FETCH_PRODUCT_META, {
     client: client,
@@ -139,9 +139,7 @@ export default function Home() {
               filter={filter}
             />
             <Select
-              sortField={sortField}
               setSortField={setSortField}
-              sortOrder={sortOrder}
               setSortOrder={setSortOrder}
             />
           </FlexBar>

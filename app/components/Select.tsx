@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 
 import Image from 'next/image'
@@ -52,28 +53,34 @@ const Option = styled.div`
   }
 `
 
-export default function Select({ sortField, sortOrder, setSortField, setSortOrder }) {
+export default function Select({ setSortField, setSortOrder }) {
+  const router = useRouter();
   const [ isOpen, setIsOpen ] = useState(false);
   const handleClick = () => {
     setIsOpen(!isOpen);
+  }
+
+  const selectOption = (option, order = 'asc') => {
+    router.push(`/?sort=${option}&order=${order}`);
+    setSortField(option);
+    setSortOrder(order);
+    setIsOpen(false);
   }
 
   return (
     <Container>
       <Label onClick={handleClick}>Organizar por <Icon><Image src='/angle-down.svg' width={12} height={6}/></Icon></Label>
       <Options isOpen={isOpen}>
-        <Option onClick={() => { setSortField('created_at'); setSortOrder('asc'); setIsOpen(false) }}>Novidades</Option>
-        <Option onClick={() => { setSortField('price_in_cents'); setSortOrder('desc'); setIsOpen(false) }}>Preço: Maior - Menor</Option>
-        <Option onClick={() => { setSortField('price_in_cents'); setSortOrder('asc'); setIsOpen(false) }}>Preço: Menor - Maior</Option>
-        <Option onClick={() => { setSortField('sales'); setSortOrder('asc'); setIsOpen(false) }}>Mais vendidos</Option>
+        <Option onClick={ () => selectOption('created_at') }>Novidades</Option>
+        <Option onClick={ () => selectOption('price_in_cents') }>Preço: Maior - Menor</Option>
+        <Option onClick={ () => selectOption('price_in_cents', 'desc') }>Preço: Menor - Maior</Option>
+        <Option onClick={ () => selectOption('sales') }>Mais vendidos</Option>
       </Options>
     </Container>
   )
 }
 
 Select.propTypes = {
-  sortField: PropTypes.string.isRequired,
   setSortField: PropTypes.func.isRequired,
-  sortOrder: PropTypes.string.isRequired,
   setSortOrder: PropTypes.func.isRequired,
 };
