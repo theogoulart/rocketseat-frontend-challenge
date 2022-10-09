@@ -6,7 +6,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import client from "../../apollo-client"
 
-import { formatPrice, getCartProducts, setCartProducts, getCartProductCount } from '../../utils/tools'
+import {
+  formatPrice,
+  getCartProducts,
+  setCartProducts,
+  getCartProductCount, 
+  translate
+} from '../../utils/tools'
 
 import Head from 'next/head'
 import Header from '../../components/Header'
@@ -166,7 +172,7 @@ export default function Product({ product }) {
             />
           </ImageWrapper>
           <Details>
-            <span>{product.category}</span>
+            <span>{translate(product.category)}</span>
             <Name>{product.name}</Name>
             <Price>R$ {formatPrice(product.price_in_cents)}</Price>
             <Disclaimer>

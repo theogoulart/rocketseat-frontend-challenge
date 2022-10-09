@@ -19,4 +19,8 @@ const getCartProductCount = () => {
   return typeof count === 'number' ? count : 0;
 }
 
-export { formatPrice, getCartProducts, getCartProductCount, setCartProducts };
+const translate = (word) => {
+  return {'mugs': 'Caneca', 't-shirts': 'Camiseta'}[word];
+}
+
+export { formatPrice, getCartProducts, getCartProductCount, setCartProducts, translate };
