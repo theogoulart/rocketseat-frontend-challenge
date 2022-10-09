@@ -123,8 +123,9 @@ export default function Home() {
 
   const searchProducts = (input) => {
     if (input) {
-      router.push(`/?search=${encodeURIComponent(input)}`);
+      return router.push(`/?search=${encodeURIComponent(input)}`);
     }
+    router.push('/');
   }
 
   const products = allProductsData?.allProducts;
