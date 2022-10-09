@@ -61,7 +61,10 @@ export default function Select({ setSortField, setSortOrder }) {
   }
 
   const selectOption = (option, order = 'asc') => {
-    router.push(`/?sort=${option}&order=${order}`);
+    router.push({
+      pathname: '/',
+      query: {...router.query, sort: option, order: order}
+    });
     setSortField(option);
     setSortOrder(order);
     setIsOpen(false);

@@ -35,7 +35,10 @@ export default function Pagination({ pages, page, setPage }) {
   const pageJSX = [];
 
   const handleClick = (newPage) => {
-    router.push(`/?page=${newPage+1}`);
+    router.push({
+      pathname: '/',
+      query: {...router.query, page: newPage+1}
+    });
     setPage(newPage);
   }
 
