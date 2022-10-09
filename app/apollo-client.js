@@ -1,8 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-console.log(process.env.NEXT_PUBLIC_API_URI);
 const client = new ApolloClient({
-    uri: process.env.NEXT_PUBLIC_API_URI,
+    uri: 'https://rocketseat-frontend-challenge.herokuapp.com/',
     cache: new InMemoryCache(),
 });
 
