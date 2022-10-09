@@ -113,18 +113,16 @@ export default function ShoppingCart() {
       <Main>
         <Container>
           <Cart>
-            <Link href="/">
-              <BackButton>
-                <ReturnIcon>
-                    <Image
-                    src='/return.svg'
-                    width={18}
-                    height={18}
-                    />
-                </ReturnIcon>
-                Voltar
-              </BackButton>
-            </Link>
+            <BackButton onClick={ () => router.back() }>
+              <ReturnIcon>
+                  <Image
+                  src='/return.svg'
+                  width={18}
+                  height={18}
+                  />
+              </ReturnIcon>
+              Voltar
+            </BackButton>
             <Title>SEU CARRINHO</Title>
             <Total>Total ({totalProducts} produtos) <strong>R${formatPrice(subtotalInCents)}</strong></Total>
             {Object.values(products).map((p, i) => 
