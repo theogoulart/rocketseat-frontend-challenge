@@ -103,6 +103,8 @@ export default function Home() {
       }
     }
   );
+  console.log(loading);
+  console.error(error);
 
   const searchProducts = (input) => {
     if (input) {
