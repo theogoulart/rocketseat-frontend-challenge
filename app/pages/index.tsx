@@ -87,7 +87,12 @@ export default function Home() {
 
   useEffect(() => {
     const qsPage = parseInt(router.query.page?.toString());
-    setFilter({ q: decodeURIComponent(router.query.search?.toString() || '') });
+    const qsFilter = { q: decodeURIComponent(router.query.search?.toString() || '') }
+    if (router.query.category) {
+      qsFilter['category'] = router.query.category?.toString();
+    }
+
+    setFilter(qsFilter);
     setPage(isNaN(qsPage) ? 0 : qsPage-1);
     setSortField(router.query.sort?.toString() || '');
     setSortOrder(router.query.order?.toString() || '');

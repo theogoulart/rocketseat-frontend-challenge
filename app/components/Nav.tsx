@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 import styled, { css } from 'styled-components'
 
@@ -26,11 +27,27 @@ const Link = styled.button`
 `
 
 export default function Nav({ setPage, setFilter, filter }) {
+  const router = useRouter();
+
+  const handleClick = (category = '') => {
+    const newFilters = { ...router.query };
+    newFilters['category'] = category;
+  
+    if (category === '') {
+      delete newFilters['category'];
+    }
+
+    router.push({
+      pathname: '/',
+      query: {...newFilters, page: 1}
+    });
+  }
+
   return (
     <Container>
-      <Link onClick={() => { setFilter({ q: filter.q }); setPage(0) } } active={ !filter.hasOwnProperty('category') }>TODOS OS PRODUTOS</Link>
-      <Link onClick={() => { setFilter({ q: filter.q, category: "t-shirts" }); setPage(0) } } active={filter.category === "t-shirts"}>CAMISETAS</Link>
-      <Link onClick={() => { setFilter({ q: filter.q, category: "mugs" }); setPage(0) } } active={filter.category === "mugs"}>CANECAS</Link>
+      <Link onClick={ () => handleClick() } active={ !filter.hasOwnProperty('category') }>TODOS OS PRODUTOS</Link>
+      <Link onClick={ () => handleClick('t-shirts') } active={filter.category === 't-shirts'}>CAMISETAS</Link>
+      <Link onClick={ () => handleClick('mugs') } active={filter.category === 'mugs'}>CANECAS</Link>
     </Container>
   )
 }
