@@ -39,7 +39,6 @@ export default function Pagination({ pages, page, setPage }) {
       pathname: '/',
       query: {...router.query, page: newPage+1}
     });
-    setPage(newPage);
   }
 
   for (let i=0;i<pages;i++) {

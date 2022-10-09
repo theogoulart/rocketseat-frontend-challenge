@@ -123,7 +123,6 @@ export default function Home() {
 
   const searchProducts = (input) => {
     if (input) {
-      setFilter({ q: input });
       router.push(`/?search=${encodeURIComponent(input)}`);
     }
   }

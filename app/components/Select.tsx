@@ -65,8 +65,7 @@ export default function Select({ setSortField, setSortOrder }) {
       pathname: '/',
       query: {...router.query, sort: option, order: order}
     });
-    setSortField(option);
-    setSortOrder(order);
+
     setIsOpen(false);
   }
 
