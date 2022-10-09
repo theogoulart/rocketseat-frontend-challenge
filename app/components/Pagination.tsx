@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 import styled, { css } from 'styled-components'
 
@@ -30,16 +31,23 @@ const Page = styled.button`
 `
 
 export default function Pagination({ pages, page, setPage }) {
+  const router = useRouter();
   const pageJSX = [];
+
+  const handleClick = (newPage) => {
+    router.push(`/?page=${newPage+1}`);
+    setPage(newPage);
+  }
+
   for (let i=0;i<pages;i++) {
-    pageJSX.push(<Page key={i} onClick={() => setPage(i)} active={page === i}>{i+1}</Page>);
+    pageJSX.push(<Page key={i} onClick={() => handleClick(i)} active={page === i}>{i+1}</Page>);
   }
 
   return (
     <Container>
       {pageJSX}
-      {<Page key={'prev'} onClick={() => page > 0 && setPage(page-1)} >&lt;</Page>}
-      {<Page key={'next'} onClick={() => page+1 < Math.ceil(pages) && setPage(page+1)} last>&gt;</Page>}
+      {<Page key={'prev'} onClick={() => page > 0 && handleClick(page-1)} >&lt;</Page>}
+      {<Page key={'next'} onClick={() => page+1 < Math.ceil(pages) && handleClick(page+1)} last>&gt;</Page>}
     </Container>
   )
 }

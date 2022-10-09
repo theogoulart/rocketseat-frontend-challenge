@@ -79,7 +79,8 @@ export default function Home() {
     setNotifications(getCartProductCount());
   }, []);
 
-  const [page, setPage] = useState(parseInt(router.query.page?.toString()) || 0);
+  const qsPage = parseInt(router.query.page?.toString());
+  const [page, setPage] = useState(isNaN(qsPage) ? 0 : qsPage-1);
   const [filter, setFilter] = useState({ q: decodeURIComponent(router.query.search?.toString() || '')});
   const [sortField, setSortField] = useState(router.query.sort?.toString() || '');
   const [sortOrder, setSortOrder] = useState(router.query.order?.toString() || '');
