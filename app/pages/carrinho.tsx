@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from "next/router"
 import styled from 'styled-components'
+import Link from 'next/link'
 import Image from 'next/image'
 
 import { formatPrice, getCartProducts, getCartProductCount, setCartProducts } from '../utils/tools'
@@ -112,16 +113,18 @@ export default function ShoppingCart() {
       <Main>
         <Container>
           <Cart>
-            <BackButton>
-              <ReturnIcon>
-                  <Image
-                  src='/return.svg'
-                  width={18}
-                  height={18}
-                  />
-              </ReturnIcon>
-              Voltar
-            </BackButton>
+            <Link href="/">
+              <BackButton>
+                <ReturnIcon>
+                    <Image
+                    src='/return.svg'
+                    width={18}
+                    height={18}
+                    />
+                </ReturnIcon>
+                Voltar
+              </BackButton>
+            </Link>
             <Title>SEU CARRINHO</Title>
             <Total>Total ({totalProducts} produtos) <strong>R${formatPrice(subtotalInCents)}</strong></Total>
             {Object.values(products).map((p, i) => 
