@@ -30,6 +30,7 @@ export default function ProductCard({ id, image_url, name, price_in_cents }) {
     <Link href={`/produto/${id}`}>
       <Container>
         <Image
+          alt={`Foto de ${name}`}
           src={image_url}
           width={256}
           height={300}

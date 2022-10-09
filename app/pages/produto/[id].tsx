@@ -153,6 +153,7 @@ export default function Product({ product }) {
           <BackButton onClick={ () => router.back() }>
             <ReturnIcon>
               <Image
+                alt=''
                 src='/return.svg'
                 width={18}
                 height={18}
@@ -164,6 +165,7 @@ export default function Product({ product }) {
         <Container>
           <ImageWrapper>
             <Image
+              alt={`Foto de ${product.name}`}
               src={product.image_url}
               height={580}
               width={640}
@@ -181,6 +183,7 @@ export default function Product({ product }) {
             <AddToCartButton onClick={ () => addProductToCart() }>
               <ButtonIcon>
                 <Image
+                  alt=''
                   src='/shopping-bag-w.svg'
                   height={24}
                   width={24}

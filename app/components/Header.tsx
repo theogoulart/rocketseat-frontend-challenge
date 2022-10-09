@@ -119,6 +119,7 @@ export default function Header({
           />
           <Submit onClick={() => searchSubmitHandler(input)}>
             <Image
+              alt='pesquisar'
               src='/magnifier.svg'
               width={24}
               height={24}
@@ -128,6 +129,7 @@ export default function Header({
         <Link href="/carrinho">
           <ShoppingCart>
             <Image
+              alt='carrinho de compras'
               src='/shopping-bag.svg'
               width={24}
               height={24}

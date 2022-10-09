@@ -86,6 +86,7 @@ export default function CartProduct({
     <Container>
       <ImageWrapper>
         <Image
+          alt={`Foto de ${name}`}
           src={image_url}
           height={211}
           width={232}
@@ -105,6 +106,7 @@ export default function CartProduct({
         onClick={() => removeProductHandler(id)}
       >
           <Image
+            alt='remover produto do carrinho'
             src='/trash-bin.svg'
             height={24}
             width={24}

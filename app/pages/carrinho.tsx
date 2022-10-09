@@ -115,11 +115,12 @@ export default function ShoppingCart() {
           <Cart>
             <BackButton onClick={ () => router.back() }>
               <ReturnIcon>
-                  <Image
+                <Image
+                  alt=''
                   src='/return.svg'
                   width={18}
                   height={18}
-                  />
+                />
               </ReturnIcon>
               Voltar
             </BackButton>
