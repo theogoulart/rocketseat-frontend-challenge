@@ -75,15 +75,23 @@ const PER_PAGE = 12;
 export default function Home() {
   const router = useRouter();
   const [ notifications, setNotifications ] = useState(0);
+
+  const [page, setPage] = useState(0);
+  const [filter, setFilter] = useState({ q: '' });
+  const [sortField, setSortField] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
+
   useEffect(() => {
     setNotifications(getCartProductCount());
   }, []);
 
-  const qsPage = parseInt(router.query.page?.toString());
-  const [page, setPage] = useState(isNaN(qsPage) ? 0 : qsPage-1);
-  const [filter, setFilter] = useState({ q: decodeURIComponent(router.query.search?.toString() || '')});
-  const [sortField, setSortField] = useState(router.query.sort?.toString() || '');
-  const [sortOrder, setSortOrder] = useState(router.query.order?.toString() || '');
+  useEffect(() => {
+    const qsPage = parseInt(router.query.page?.toString());
+    setFilter({ q: decodeURIComponent(router.query.search?.toString() || '') });
+    setPage(isNaN(qsPage) ? 0 : qsPage-1);
+    setSortField(router.query.sort?.toString() || '');
+    setSortOrder(router.query.order?.toString() || '');
+  }, [router.query])
 
   const { data: _allProductsMetaData, loading: loadingMeta } = useQuery(FETCH_PRODUCT_META, {
     client: client,
