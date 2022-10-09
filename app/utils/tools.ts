@@ -13,6 +13,7 @@ const setCartProducts = (products) => {
 
 const getCartProductCount = () => {
   const products = localStorage.getItem('products');
+  if (!products) return 0;
   const count: unknown = Object.values(JSON.parse(products))
     .reduce((acc, { quantity }) => acc + quantity, 0);
   return typeof count === 'number' ? count : 0;
