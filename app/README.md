@@ -8,6 +8,11 @@ npm i
 yarn install
 ```
 
+Crie um arquivo `.env` dentro do diretório `app` com o seguinte conteúdo
+```
+NEXT_PUBLIC_API_URI=http://localhost:3333
+```
+
 ## Rodando o projeto
 
 Abra duas abas do terminal e rode os servidores de desenvolvimento da `api` e do `app`:
