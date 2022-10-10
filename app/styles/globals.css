@@ -1,11 +1,13 @@
 @font-face {
   font-family: Saira;
   src: url('../fonts/Saira/Saira-Regular.ttf');
+  font-display: swap;
 }
 
 @font-face {
   font-family: Saira Stencil One;
   src: url('../fonts/Saira/SairaStencilOne-Regular.ttf');
+  font-display: swap;
 }
 
 html,
