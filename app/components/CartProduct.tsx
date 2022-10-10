@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import PropTypes, { InferProps } from "prop-types";
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { formatPrice } from '../utils/tools'
 
 const Container = styled.div`
@@ -13,11 +13,18 @@ const Container = styled.div`
   width: 100%;
 `
 const ImageWrapper = styled.div`
-  overflow: hidden;
   flex-shrink: 0;
+  height: 211px;
+  width: 256px;
+  overflow: hidden;
   @media (max-width: 768px) {
     flex-shrink: 1;
   }
+  ${props => css`
+    background-image: url('${props.imageUrl}');
+    background-size: 264px 240px;
+    background-position: 0 -20px;
+  `}
 `
 const Details = styled.div`
   display: flex;
@@ -84,14 +91,7 @@ export default function CartProduct({
 }) {
   return (
     <Container>
-      <ImageWrapper>
-        <Image
-          alt={`Foto de ${name}`}
-          src={image_url}
-          height={211}
-          width={232}
-        />
-      </ImageWrapper>
+      <ImageWrapper imageUrl={image_url} />
       <Details>
       <Name>{name}</Name>
       <Description>{description}</Description>
