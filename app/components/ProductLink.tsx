@@ -26,16 +26,11 @@ const Price = styled.div`
 `
 const ImageWrapper = styled.div`
   flex-shrink: 0;
-  height: 300px;
-  width: 256px;
+  max-height: 300px;
+  width: 100%;
   img {
     object-position: center;
     object-fit: cover;
-  }
-  @media (max-width: 768px) {
-    img {
-      object-position: right;
-    }
   }
 `
 

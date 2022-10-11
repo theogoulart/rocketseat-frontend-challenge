@@ -26,9 +26,6 @@ const ImageWrapper = styled.div`
   }
   @media (max-width: 768px) {
     flex-shrink: 1;
-    img {
-      object-position: right;
-    }
   }
 `
 const Details = styled.div`
