@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import PropTypes, { InferProps } from "prop-types";
-import styled, { css } from 'styled-components'
+
+import PropTypes from "prop-types";
+import styled from 'styled-components'
 import { formatPrice } from '../utils/tools'
 
 const Container = styled.div`

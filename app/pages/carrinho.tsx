@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from "next/router"
 import styled from 'styled-components'
-import Link from 'next/link'
 import Image from 'next/image'
 
 import { formatPrice, getCartProducts, getCartProductCount, setCartProducts } from '../utils/tools'

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image';
 
 import PropTypes from "prop-types";
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { formatPrice } from '../utils/tools'
 
 const Container = styled.a`
