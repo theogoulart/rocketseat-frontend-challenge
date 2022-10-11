@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image';
 
-import PropTypes, { InferProps } from "prop-types";
+import PropTypes from "prop-types";
 import styled, { css } from 'styled-components'
 import { formatPrice } from '../utils/tools'
 
@@ -27,22 +28,27 @@ const ImageWrapper = styled.div`
   flex-shrink: 0;
   height: 300px;
   width: 256px;
-  overflow: hidden;
   @media (max-width: 768px) {
     flex-shrink: 1;
   }
-  ${props => css`
-    background-image: url('${props.imageUrl}');
-    background-size: 330px 300px;
-    background-position: -37px 0;
-  `}
+  img {
+    object-position: center;
+    object-fit: cover;
+  }
 `
 
 export default function ProductCard({ id, image_url, name, price_in_cents }) {
   return (
     <Link href={`/produto/${id}`}>
       <Container>
-        <ImageWrapper imageUrl={image_url} />
+        <ImageWrapper>
+          <Image
+            alt=''
+            src={image_url}
+            width={256}
+            height={300}
+          />
+        </ImageWrapper>
         <Name>{name}</Name>
         <Price>R$ {formatPrice(price_in_cents)}</Price>
       </Container>

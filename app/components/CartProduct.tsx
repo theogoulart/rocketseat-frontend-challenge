@@ -16,15 +16,13 @@ const ImageWrapper = styled.div`
   flex-shrink: 0;
   height: 211px;
   width: 256px;
-  overflow: hidden;
   @media (max-width: 768px) {
     flex-shrink: 1;
   }
-  ${props => css`
-    background-image: url('${props.imageUrl}');
-    background-size: 264px 240px;
-    background-position: 0 -20px;
-  `}
+  img {
+    object-position: center;
+    object-fit: cover;
+  }
 `
 const Details = styled.div`
   display: flex;
@@ -91,7 +89,14 @@ export default function CartProduct({
 }) {
   return (
     <Container>
-      <ImageWrapper imageUrl={image_url} />
+      <ImageWrapper>
+        <Image
+          alt=''
+          src={image_url}
+          width={256}
+          height={211}
+        />
+      </ImageWrapper>
       <Details>
       <Name>{name}</Name>
       <Description>{description}</Description>
