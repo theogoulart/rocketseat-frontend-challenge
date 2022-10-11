@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import Link from 'next/link'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from 'next/image'
 import styled from 'styled-components'
 
@@ -95,12 +95,17 @@ export default function Header({
   notifications,
   searchSubmitHandler
 }) {
-  const [ input, setInput ] = useState(query);
+  const [ input, setInput ] = useState('');
   const handleKeyDown = e => {
     if (e.key === 'Enter') {
       searchSubmitHandler(input);
     }
   };
+
+  useEffect(() => {
+    if (query)
+      setInput(query);
+  }, [query])
 
   return (
     <Container>
