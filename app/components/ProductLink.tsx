@@ -28,12 +28,14 @@ const ImageWrapper = styled.div`
   flex-shrink: 0;
   height: 300px;
   width: 256px;
-  @media (max-width: 768px) {
-    flex-shrink: 1;
-  }
   img {
     object-position: center;
     object-fit: cover;
+  }
+  @media (max-width: 768px) {
+    img {
+      object-position: right;
+    }
   }
 `
 

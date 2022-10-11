@@ -12,17 +12,23 @@ const Container = styled.div`
   margin-bottom: 16px;
   overflow: hidden;
   width: 100%;
+  @media (max-width: 768px) {
+    height: 260px;
+  }
 `
 const ImageWrapper = styled.div`
   flex-shrink: 0;
   height: 211px;
   width: 256px;
-  @media (max-width: 768px) {
-    flex-shrink: 1;
-  }
   img {
     object-position: center;
     object-fit: cover;
+  }
+  @media (max-width: 768px) {
+    flex-shrink: 1;
+    img {
+      object-position: right;
+    }
   }
 `
 const Details = styled.div`
