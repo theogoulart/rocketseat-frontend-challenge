@@ -201,7 +201,7 @@ export async function getServerSideProps({ params }) {
   const  { data, error } = await client.query({
     query: gql`
       query Product {
-        Product(id: "${params.id}") {
+        product(id: "${params.id}") {
           id
           name
           description
@@ -216,7 +216,7 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      product: data.Product,
+      product: data.product,
     },
   };
 }
