@@ -1,112 +1,97 @@
-# Apollo Server API
+# 🚀 Apollo Server API
 
-A GraphQL API built with Apollo Server that serves product data.
+GraphQL API for the Caputeeno e-commerce application.
 
-## Setup
+## ⚡ Setup
 
-1. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
-```
-
-2. Start the server:
-```bash
-# Development mode with auto-reload
-npm run dev
-
-# Production mode
 npm start
 ```
 
-The server will start on `http://localhost:3333`
+Server runs on `http://localhost:3333`
 
-## GraphQL Playground
+## 📋 Schema
 
-Once the server is running, you can access the GraphQL Playground at:
-`http://localhost:3333`
-
-## Available Queries
-
-### Get all products
 ```graphql
-query {
-  products {
+type Product {
+  id: ID!
+  name: String!
+  description: String!
+  image_url: String!
+  category: String!
+  price_in_cents: Int!
+  sales: Int!
+  created_at: String!
+}
+
+input ProductFilter {
+  q: String      # Search query
+  category: String # mugs, t-shirts
+}
+
+type Query {
+  allProducts(perPage: Int, page: Int, filter: ProductFilter, sortField: String, sortOrder: String): [Product!]!
+  _allProductsMeta(filter: ProductFilter): Meta!
+  product(id: ID!): Product
+}
+```
+
+## 🔍 Queries
+
+### Get products with filtering & pagination
+```graphql
+query Products($perPage: Int!, $page: Int!, $filter: ProductFilter!, $sortField: String!, $sortOrder: String!) {
+  allProducts(perPage: $perPage, page: $page, filter: $filter, sortField: $sortField, sortOrder: $sortOrder) {
+    id
+    name
+    price_in_cents
+  }
+}
+```
+
+### Get product count
+```graphql
+query ProductMeta($filter: ProductFilter!) {
+  _allProductsMeta(filter: $filter) {
+    count
+  }
+}
+```
+
+### Get single product
+```graphql
+query Product($id: ID!) {
+  product(id: $id) {
     id
     name
     description
     image_url
     category
     price_in_cents
-    sales
-    created_at
   }
 }
 ```
 
-### Get a specific product by ID
+## 💡 Examples
+
 ```graphql
-query {
-  product(id: "product-id-here") {
-    id
-    name
-    description
-    image_url
-    category
-    price_in_cents
-    sales
-    created_at
-  }
-}
+# Search products
+{ allProducts(filter: { q: "camiseta" }) { name } }
+
+# Filter by category
+{ allProducts(filter: { category: "mugs" }) { name } }
+
+# Sort by price
+{ allProducts(sortField: "price_in_cents", sortOrder: "desc") { name price_in_cents } }
+
+# Pagination
+{ allProducts(perPage: 12, page: 0) { name } }
 ```
 
-### Get products by category
-```graphql
-query {
-  productsByCategory(category: "mugs") {
-    id
-    name
-    description
-    image_url
-    category
-    price_in_cents
-    sales
-    created_at
-  }
-}
-```
+## 📊 Data
 
-### Get paginated products
-```graphql
-query {
-  productsPaginated(page: 1, limit: 5) {
-    id
-    name
-    description
-    image_url
-    category
-    price_in_cents
-    sales
-    created_at
-  }
-}
-```
-
-## Data Structure
-
-The API serves products with the following structure:
-- `id`: Unique product identifier
-- `name`: Product name
-- `description`: Product description
-- `image_url`: URL to product image
-- `category`: Product category (mugs, t-shirts)
-- `price_in_cents`: Price in cents
-- `sales`: Number of sales
-- `created_at`: Creation date
-
-## Categories
-
-Available product categories:
-- `mugs`: Coffee mugs and cups
-- `t-shirts`: T-shirts and clothing 
+- 60 products generated with Faker
+- Categories: `mugs`, `t-shirts`
+- Price range: R$20.00 - R$100.00
+- Random sales data included 
