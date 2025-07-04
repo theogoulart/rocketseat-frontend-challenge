@@ -74,8 +74,8 @@ export default function Select({ setSortField, setSortOrder }) {
       <Label onClick={handleClick}>Organizar por <Icon><Image alt='' src='/angle-down.svg' width={12} height={6}/></Icon></Label>
       <Options isOpen={isOpen}>
         <Option onClick={ () => selectOption('created_at') }>Novidades</Option>
-        <Option onClick={ () => selectOption('price_in_cents') }>Preço: Maior - Menor</Option>
-        <Option onClick={ () => selectOption('price_in_cents', 'desc') }>Preço: Menor - Maior</Option>
+        <Option onClick={ () => selectOption('price_in_cents', 'desc') }>Preço: Maior - Menor</Option>
+        <Option onClick={ () => selectOption('price_in_cents') }>Preço: Menor - Maior</Option>
         <Option onClick={ () => selectOption('sales') }>Mais vendidos</Option>
       </Options>
     </Container>
