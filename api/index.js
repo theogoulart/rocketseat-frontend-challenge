@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require('apollo-server');
+const { ApolloServer, gql } = require('apollo-server-micro');
 const { products } = require('./db');
 
 // GraphQL schema definition
@@ -107,16 +107,14 @@ const resolvers = {
 };
 
 // Create Apollo Server
-const server = new ApolloServer({
+const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   introspection: true,
   playground: true,
 });
 
-// Start the server
-server.listen({ port: 3333 }).then(({ url }) => {
-  console.log(`🚀 Apollo Server ready at ${url}`);
-  console.log(`📊 GraphQL Playground available at ${url}`);
-  console.log(`📦 Total products loaded: ${products.length}`);
+// Export the handler for Vercel
+module.exports = apolloServer.createHandler({
+  path: '/api/graphql',
 }); 

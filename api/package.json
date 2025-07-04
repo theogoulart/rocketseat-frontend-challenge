@@ -5,10 +5,11 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "echo 'No build step required'"
   },
   "dependencies": {
-    "apollo-server": "^3.12.1",
+    "apollo-server-micro": "^3.12.1",
     "graphql": "^16.8.1",
     "faker": "^5.5.3"
   },
