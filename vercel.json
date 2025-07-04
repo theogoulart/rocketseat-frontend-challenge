@@ -7,13 +7,13 @@
   },
   "rewrites": [
     {
-      "source": "/graphql",
+      "source": "/(.*)",
       "destination": "/api/index.js"
     }
   ],
   "headers": [
     {
-      "source": "/graphql",
+      "source": "/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
