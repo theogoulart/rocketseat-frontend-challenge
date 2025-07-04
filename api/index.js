@@ -118,7 +118,7 @@ const apolloServer = new ApolloServer({
 // For local development
 if (process.env.NODE_ENV !== 'production') {
   startStandaloneServer(apolloServer, {
-    listen: { port: 3000 },
+    listen: { port: 3333 },
   }).then(({ url }) => {
     console.log(`🚀 Server ready at ${url}`);
   });
@@ -155,7 +155,7 @@ export default async function handler(req, res) {
       });
 
       res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(result);
+      res.status(200).json(result?.body.singleResult.data);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
