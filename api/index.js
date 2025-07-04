@@ -109,7 +109,7 @@ const resolvers = {
 };
 
 // Create Apollo Server
-const server = new ApolloServer({
+const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   introspection: true,
@@ -117,7 +117,7 @@ const server = new ApolloServer({
 
 // For local development
 if (process.env.NODE_ENV !== 'production') {
-  startStandaloneServer(server, {
+  startStandaloneServer(apolloServer, {
     listen: { port: 3000 },
   }).then(({ url }) => {
     console.log(`🚀 Server ready at ${url}`);
@@ -149,7 +149,7 @@ export default async function handler(req, res) {
 
       const { query, variables } = JSON.parse(body);
       
-      const result = await server.executeOperation({
+      const result = await apolloServer.executeOperation({
         query,
         variables,
       });
