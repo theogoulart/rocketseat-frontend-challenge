@@ -155,7 +155,7 @@ export default async function handler(req, res) {
       });
 
       res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(result?.body.singleResult.data);
+      res.status(200).json(result?.body.singleResult);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
