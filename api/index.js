@@ -139,7 +139,7 @@ export default async function handler(req, res) {
   // Handle GraphQL requests
   const { url, method } = req;
   
-  if (method === 'POST' && url === '/graphql') {
+  if (method === 'POST') {
     try {
       const body = await new Promise((resolve) => {
         let data = '';
