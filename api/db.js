@@ -1,4 +1,4 @@
-const faker = require('faker');
+import faker from 'faker';
 
 const TOTAL_PAGES = 5;
 
@@ -32,6 +32,4 @@ const allProducts = new Array(TOTAL_PAGES).fill(1).reduce((acc) => {
   return [...acc, ...products]
 }, [])
 
-module.exports = {
-  products: allProducts
-}
+export const products = allProducts;

@@ -1,5 +1,7 @@
-const { ApolloServer, gql } = require('apollo-server');
-const { products } = require('./db');
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import { gql } from 'graphql-tag';
+import { products } from './db.js';
 
 // GraphQL schema definition
 const typeDefs = gql`
@@ -111,12 +113,53 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   introspection: true,
-  playground: true,
 });
 
-// Start the server
-server.listen({ port: 3333 }).then(({ url }) => {
-  console.log(`🚀 Apollo Server ready at ${url}`);
-  console.log(`📊 GraphQL Playground available at ${url}`);
-  console.log(`📦 Total products loaded: ${products.length}`);
-}); 
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  startStandaloneServer(server, {
+    listen: { port: 3000 },
+  }).then(({ url }) => {
+    console.log(`🚀 Server ready at ${url}`);
+  });
+}
+
+// For Vercel serverless
+export default async function handler(req, res) {
+  // Handle CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  // Handle GraphQL requests
+  const { url, method } = req;
+  
+  if (method === 'POST' && url === '/graphql') {
+    try {
+      const body = await new Promise((resolve) => {
+        let data = '';
+        req.on('data', chunk => data += chunk);
+        req.on('end', () => resolve(data));
+      });
+
+      const { query, variables } = JSON.parse(body);
+      
+      const result = await server.executeOperation({
+        query,
+        variables,
+      });
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  } else {
+    res.status(404).json({ error: 'Not found' });
+  }
+} 
